@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d8ff00"><meta name="description" content="Javier Vera — Diseño que encuentra la forma de resolver.">
+<title>Javier Vera — Estudio de soluciones visuales</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="cursor-orb" id="cursorOrb"></div>
+<header class="top">
+  <a href="#start" class="logo">JV<span>®</span><small>VISUAL PROBLEM SOLVER</small></a>
+  <div class="live"><i></i> SISTEMA CREATIVO ACTIVO</div>
+  <button id="menuBtn" class="menu-btn">ÍNDICE <span>＋</span></button>
+</header>
+<nav class="menu-panel" id="menuPanel"><a href="#lab">01 / El laboratorio</a><a href="#work">02 / Casos visuales</a><a href="#about">03 / Cómo pienso</a><a href="#contact">04 / Activar proyecto ↗</a></nav>
+
+<main>
+<section class="hero" id="start">
+  <div class="hero-topline"><span>PORTAFOLIO INTERACTIVO / 2026</span><span>LIMA, PERÚ · DISPONIBLE REMOTO</span></div>
+  <div class="hero-content">
+    <p class="tiny-label">NO HAGO «SOLO DISEÑOS».</p>
+    <h1>HAY UNA<br>IDEA <span class="squiggle">ATASCADA</span><br>POR AHÍ<span class="dot">.</span></h1>
+    <div class="hero-aside"><span class="asterisk">✳</span><p>La encuentro.<br>La ordeno.<br><b>La vuelvo visible.</b></p></div>
+  </div>
+  <div class="hero-bottom"><p>Javier Vera — diseñador gráfico, creativo y traductor de ideas complicadas a comunicación visual clara.</p><a href="#lab" class="scroll-cue">BAJAR A EXPLORAR <span>↓</span></a></div>
+  <div class="hero-graphic" aria-hidden="true"><span>IDEA</span><span>FORMA</span><span>IMPACTO</span></div>
+</section>
+
+<section class="lab" id="lab">
+  <div class="section-tag"><span>01 / EL LABORATORIO</span><span>PRUEBA UNA COMBINACIÓN</span></div>
+  <div class="lab-head"><h2>¿Qué necesitas<br><em>destrabar?</em></h2><p>No hace falta saber cómo se llama lo que necesitas. Elige el reto y te muestro por dónde empezaría.</p></div>
+  <div class="lab-interface">
+    <div class="choices">
+      <button class="choice selected" data-kind="marca"><span>01</span><b>Una marca que no se siente como marca</b><i>↗</i></button>
+      <button class="choice" data-kind="campana"><span>02</span><b>Una campaña que necesita llamar la atención</b><i>↗</i></button>
+      <button class="choice" data-kind="contenido"><span>03</span><b>Contenido que debe explicar algo rápido</b><i>↗</i></button>
+      <button class="choice" data-kind="produccion"><span>04</span><b>Muchas piezas, poco tiempo y cero caos</b><i>↗</i></button>
+    </div>
+    <div class="solution" aria-live="polite">
+      <div class="solution-header"><span>DIAGNÓSTICO INICIAL</span><span id="solutionNumber">A—01</span></div>
+      <div class="solution-icon" id="solutionIcon">◉</div>
+      <h3 id="solutionTitle">Primero, encontrar el carácter.</h3>
+      <p id="solutionText">Definir qué debe sentir la gente, qué hace distinta a la marca y cómo se traduce eso a un sistema visual reconocible.</p>
+      <div class="solution-tags" id="solutionTags"><span>IDENTIDAD</span><span>SISTEMA VISUAL</span><span>CONSISTENCIA</span></div>
+      <button class="ask-button" id="useSolution">ESTE ES MI RETO <span>↗</span></button>
+    </div>
+  </div>
+  <div class="lab-foot"><span>ENTRADA: UNA NECESIDAD</span><span>SALIDA: UNA DIRECCIÓN VISUAL</span><span>ITERAR ES PARTE DEL PROCESO ↻</span></div>
+</section>
+
+<section class="work" id="work">
+  <div class="section-tag"><span>02 / ARCHIVO DE PRUEBAS</span><span>NO SON ADORNOS. SON DECISIONES.</span></div>
+  <div class="work-head"><h2>Ideas en<br><em>modo visible.</em></h2><div class="work-note">Cada proyecto necesita una lógica distinta. Explora las piezas y abre una para ver la intención detrás.</div></div>
+  <div class="work-filter"><span>VER POR INTENCIÓN</span><button class="wf active" data-filter="all">TODO</button><button class="wf" data-filter="impacto">IMPACTAR</button><button class="wf" data-filter="identidad">IDENTIFICAR</button><button class="wf" data-filter="explicar">EXPLICAR</button></div>
+  <div class="work-grid">
+    <button class="case case-a" data-type="impacto" data-title="Gaming / Energía visual" data-copy="Contraste fuerte, códigos de comunidad y jerarquía para que una propuesta se sienta como parte del universo gaming, no como un anuncio genérico." data-num="CASE_001"><span class="case-id">CASE_001 / IMPACTAR</span><div class="game-shape">GG</div><strong>PLAY<br>WITHOUT<br><i>PAUSE.</i></strong><span class="case-bottom">DIRECCIÓN DE ARTE <b>↗</b></span></button>
+    <button class="case case-b" data-type="identidad" data-title="Licencias / Un universo reconocible" data-copy="Cuando una marca convive con universos conocidos, el diseño debe respetar sus códigos y encontrar una aplicación que funcione en el producto y en el punto de venta." data-num="CASE_002"><span class="case-id">CASE_002 / IDENTIFICAR</span><div class="comic">POP!</div><strong>EL UNIVERSO<br>NO TERMINA<br>EN LA PANTALLA.</strong><span class="case-bottom">DISEÑO APLICADO <b>↗</b></span></button>
+    <button class="case case-c" data-type="explicar" data-title="Comunicación / Menos ruido" data-copy="Jerarquía, síntesis y una idea central. La información comercial o institucional debe entenderse antes de que la persona siga deslizando." data-num="CASE_003"><span class="case-id">CASE_003 / EXPLICAR</span><div class="big-arrow">↗</div><strong>MENOS<br>RUIDO.<br><i>MÁS IDEA.</i></strong><span class="case-bottom">CONTENIDO DIGITAL <b>↗</b></span></button>
+    <button class="case case-d" data-type="impacto" data-title="Promoción / La oferta es el mensaje" data-copy="Una promoción necesita una lectura instantánea: beneficio primero, condiciones después y una acción fácil de reconocer." data-num="CASE_004"><span class="case-id">CASE_004 / IMPACTAR</span><div class="deal">3×2</div><strong>UNA OFERTA<br>QUE SE ENTIENDE<br>EN UN SEGUNDO.</strong><span class="case-bottom">CAMPAÑA PROMOCIONAL <b>↗</b></span></button>
+  </div>
+  <p class="work-disclaimer">ARCHIVO CONCEPTUAL · Reemplaza estas piezas demostrativas por tus artes finales y casos reales antes de publicar.</p>
+</section>
+
+<section class="method" id="about">
+  <div class="section-tag"><span>03 / CÓMO PIENSO</span><span>EL DISEÑO NO EMPIEZA EN PHOTOSHOP</span></div>
+  <h2>Primero la pregunta.<br>Después la <em>forma.</em></h2>
+  <div class="method-steps">
+    <div class="step"><span>01</span><h3>Escuchar</h3><p>Entender el contexto, el público y qué necesita cambiar.</p><div class="step-symbol">⌕</div></div>
+    <div class="step"><span>02</span><h3>Ordenar</h3><p>Encontrar el mensaje principal y quitar lo que compite con él.</p><div class="step-symbol">≋</div></div>
+    <div class="step"><span>03</span><h3>Construir</h3><p>Convertir la idea en un lenguaje visual útil, coherente y memorable.</p><div class="step-symbol">✳</div></div>
+    <div class="step"><span>04</span><h3>Entregar</h3><p>Preparar las piezas para que funcionen en su contexto real.</p><div class="step-symbol">↗</div></div>
+  </div>
+  <div class="proofline"><span>9+ AÑOS RESOLVIENDO RETOS VISUALES</span><span>AGENCIAS · EMPRESAS · PROYECTOS</span><span>DISEÑO / PUBLICIDAD / BRANDING</span></div>
+  <div class="brand-ticker"><div>HE TRABAJADO EN PROYECTOS PARA <b>MARVEL</b> ✳ <b>DISNEY</b> ✳ <b>PLAYSTATION</b> ✳ <b>LOGITECH G</b> ✳ <b>PORTA</b> ✳ <b>YAQUA</b> ✳ <b>MATERNELLE</b> ✳ <b>LATAM5S</b> ✳ <b>ENEL</b> ✳&nbsp;&nbsp;</div></div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-tag"><span>04 / EL SIGUIENTE MOVIMIENTO</span><span>FIN DEL SCROLL. INICIO DE LA IDEA.</span></div>
+  <div class="contact-main"><p class="tiny-label">¿TIENES ALGO ENTRE MANOS?</p><h2>HAGAMOS<br>QUE <span>PASE.</span></h2><p>Cuéntame el reto. No necesitas llegar con todas las respuestas.</p><a id="contactLink" href="mailto:TU_CORREO@ejemplo.com?subject=Quiero%20conversar%20sobre%20un%20proyecto" class="contact-cta">INICIAR CONVERSACIÓN <span>↗</span></a></div>
+  <footer><a href="#start">JV®</a><span>DISEÑO CON INTENCIÓN.</span><span>PERÚ · 2026</span><a href="#start">VOLVER AL INICIO ↑</a></footer>
+</section>
+</main>
+
+<div class="case-modal" id="caseModal" aria-hidden="true"><div class="modal-shade" data-dismiss></div><div class="modal-inner"><button class="modal-x" data-dismiss aria-label="Cerrar">×</button><span id="modalNum" class="case-id"></span><h2 id="modalTitle"></h2><p id="modalCopy"></p><a href="#contact" id="modalContact">HABLEMOS DE UN RETO SIMILAR ↗</a></div></div>
+<div class="toast" id="toast" role="status">Reto preparado. Vamos a conversarlo ↗</div>
+<script src="script.js"></script>
+</body></html>
