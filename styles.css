@@ -9,41 +9,37 @@ html{scroll-behavior:auto}
 .view-panel{display:none;min-height:calc(100svh - 96px);width:100%;transform-origin:50% 50%;backface-visibility:hidden}
 .view-panel.is-active{display:block;animation:content-arrive .42s cubic-bezier(.2,.75,.25,1) both}
 @keyframes content-arrive{0%{opacity:.25;transform:scale(.985)}100%{opacity:1;transform:scale(1)}}
+/* Transición: membrana de silicona transparente con borde refractivo, centrada en el viewport */
 .filter-defs{position:absolute;pointer-events:none}
 .liquid-wipe{
-  position:fixed;z-index:9999;pointer-events:none;inset:-3%;opacity:0;
-  clip-path:circle(0% at 50% 50%);
-  background:
-    radial-gradient(ellipse at 50% 50%,rgba(13,105,191,.18) 0%,rgba(34,160,225,.12) 43%,rgba(220,250,255,.10) 64%,rgba(255,255,255,.035) 100%);
-  mix-blend-mode:screen;will-change:clip-path,opacity,filter;
-  filter:url(#liquid-distortion) saturate(1.15);
+  position:fixed;z-index:9999;pointer-events:none;inset:0;opacity:0;
+  clip-path:circle(0vmax at 50% 50%);
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.018) 0%,rgba(150,225,255,.035) 58%,rgba(255,255,255,.045) 72%,rgba(255,255,255,.01) 100%);
+  mix-blend-mode:screen;will-change:clip-path,opacity;
 }
 .liquid-wipe::before,.liquid-wipe::after{content:"";position:absolute;inset:0;pointer-events:none;clip-path:inherit}
+/* Borde de gel: reflejo fino, no un aro blanco grueso */
 .liquid-wipe::before{
-  background:
-    radial-gradient(ellipse at 50% 50%,transparent 0 47.9%,rgba(255,255,255,.06) 48.3%,rgba(255,255,255,.58) 48.8%,rgba(174,240,255,.9) 49.15%,rgba(255,255,255,.92) 49.35%,rgba(67,188,255,.56) 49.6%,rgba(255,255,255,.22) 49.9%,transparent 50.45%);
-  opacity:.9;
-}
-.liquid-wipe::after{
-  background:
-    radial-gradient(ellipse at 38% 30%,rgba(255,255,255,.16),transparent 17%),
-    radial-gradient(ellipse at 68% 72%,rgba(116,222,255,.18),transparent 20%),
-    radial-gradient(ellipse at 50% 50%,transparent 0 45%,rgba(255,255,255,.08) 47%,transparent 48.5%);
+  background:radial-gradient(circle at 50% 50%,transparent 0 calc(100% - 12px),rgba(255,255,255,.10) calc(100% - 10px),rgba(255,255,255,.48) calc(100% - 7px),rgba(185,242,255,.72) calc(100% - 4px),rgba(255,255,255,.34) calc(100% - 2px),transparent 100%);
   opacity:.72;
 }
-.liquid-wipe.is-spreading{opacity:1;animation:water-spread .72s cubic-bezier(.45,.02,.25,1) both}
-.liquid-wipe.is-clearing{opacity:1;animation:water-clear .52s cubic-bezier(.3,.7,.2,1) both}
-@keyframes water-spread{
-  0%{opacity:0;clip-path:circle(0% at 50% 50%);filter:url(#liquid-distortion) saturate(1)}
-  12%{opacity:1;clip-path:circle(12% at 50% 50%)}
-  34%{clip-path:circle(44% at 50% 50%)}
-  62%{clip-path:circle(88% at 50% 50%)}
-  82%{clip-path:circle(125% at 50% 50%)}
-  100%{opacity:1;clip-path:circle(155% at 50% 50%);filter:url(#liquid-distortion) saturate(1.15)}
+/* Pequeños brillos especulares desplazados, como una lámina de silicona húmeda */
+.liquid-wipe::after{
+  background:radial-gradient(ellipse at 34% 29%,rgba(255,255,255,.13),transparent 15%),radial-gradient(ellipse at 70% 68%,rgba(150,230,255,.10),transparent 18%);
+  opacity:.55;mix-blend-mode:screen;
 }
-@keyframes water-clear{
-  0%{opacity:1;clip-path:circle(155% at 50% 50%)}
-  100%{opacity:0;clip-path:circle(165% at 50% 50%)}
+.liquid-wipe.is-spreading{opacity:1;animation:gel-spread .82s cubic-bezier(.22,.72,.22,1) both}
+.liquid-wipe.is-clearing{opacity:1;animation:gel-clear .28s ease-out both}
+@keyframes gel-spread{
+  0%{opacity:0;clip-path:circle(0vmax at 50% 50%)}
+  8%{opacity:.92;clip-path:circle(9vmax at 50% 50%)}
+  32%{opacity:.86;clip-path:circle(34vmax at 50% 50%)}
+  68%{opacity:.72;clip-path:circle(75vmax at 50% 50%)}
+  100%{opacity:.45;clip-path:circle(115vmax at 50% 50%)}
+}
+@keyframes gel-clear{
+  from{opacity:.45;clip-path:circle(115vmax at 50% 50%)}
+  to{opacity:0;clip-path:circle(125vmax at 50% 50%)}
 }
 .nav-pills a,.contact-pill,.round-arrow,.footer a{cursor:pointer}
 .nav-pills a{transition:background .28s ease,box-shadow .28s ease,color .28s ease}

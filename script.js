@@ -39,7 +39,7 @@ function showView(nextView, updateHistory = true, sourceElement = null) {
   void liquidWipe.offsetWidth;
   liquidWipe.classList.add('is-spreading');
 
-  // El contenido cambia cuando la onda ha cruzado el centro y ya cubre la mayor parte de la vista.
+  // Cambiamos la vista cuando la membrana ya cubrió el centro; sin pausa artificial.
   window.setTimeout(() => {
     setActiveView(nextView);
     liquidWipe.classList.remove('is-spreading');
@@ -47,8 +47,8 @@ function showView(nextView, updateHistory = true, sourceElement = null) {
     window.setTimeout(() => {
       liquidWipe.classList.remove('is-clearing');
       switchingView = false;
-    }, 520);
-  }, 620);
+    }, 280);
+  }, 520);
 }
 
 viewLinks.forEach(link => link.addEventListener('click', event => {
