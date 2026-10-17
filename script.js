@@ -32,11 +32,9 @@ function showView(nextView, updateHistory = true, sourceElement = null) {
   }
 
   switchingView = true;
-  const rect = sourceElement?.getBoundingClientRect();
-  const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
-  const y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
-  liquidWipe.style.setProperty('--origin-x', `${x}px`);
-  liquidWipe.style.setProperty('--origin-y', `${y}px`);
+  // La expansión nace siempre del centro del contenedor visible, no del botón pulsado.
+  liquidWipe.style.setProperty('--origin-x', '50vw');
+  liquidWipe.style.setProperty('--origin-y', '50vh');
   liquidWipe.classList.remove('is-spreading', 'is-clearing');
   // Reinicia la animación para que cada clic produzca una expansión nueva.
   void liquidWipe.offsetWidth;
@@ -49,8 +47,8 @@ function showView(nextView, updateHistory = true, sourceElement = null) {
     window.setTimeout(() => {
       liquidWipe.classList.remove('is-clearing');
       switchingView = false;
-    }, 480);
-  }, 900);
+    }, 360);
+  }, 1080);
 }
 
 viewLinks.forEach(link => link.addEventListener('click', event => {

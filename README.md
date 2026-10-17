@@ -1,6 +1,6 @@
 # Javier Vera — portafolio web (boceto de código)
 
-Boceto responsive en HTML, CSS y JavaScript, sin frameworks ni proceso de compilación. Dirección visual: azul eléctrico, tipografía editorial, collage de proyectos y paneles Liquid Glass con reflejos cromáticos y deformación orgánica.
+Boceto responsive en HTML, CSS y JavaScript, sin frameworks ni proceso de compilación. Dirección visual: azul eléctrico, tipografía editorial, collage de proyectos y paneles Liquid Glass con revelado central inspirado en agua transparente, reflejos limpios y distorsión sutil.
 
 ## Probar localmente
 Abre `index.html` en un navegador. Para una prueba más fiel, sirve la carpeta con cualquier servidor estático.
