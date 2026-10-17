@@ -14,3 +14,7 @@ Abre `index.html` en un navegador. Para una prueba más fiel, sirve la carpeta c
 
 ## Publicación
 Compatible con Cloudflare Pages como sitio estático. Sube el contenido de esta carpeta al repositorio y configura la raíz del proyecto en `/` sin comando de build.
+
+
+### Transición Liquid Glass WebGL
+La navegación usa un canvas WebGL con un shader procedural para dibujar una membrana orgánica de baja opacidad y reflejos especulares. Si el navegador no soporta WebGL, la navegación cambia sin la animación. El shader simula refracción visual; no captura ni deforma literalmente los píxeles DOM que hay debajo.

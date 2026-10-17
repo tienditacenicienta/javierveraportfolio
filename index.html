@@ -12,17 +12,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <svg class="filter-defs" aria-hidden="true" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
-    <filter id="liquid-distortion" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
-      <feTurbulence type="fractalNoise" baseFrequency="0.003 0.007" numOctaves="2" seed="5" result="waterNoise">
-        <animate attributeName="baseFrequency" dur="5s" values="0.003 0.007;0.005 0.004;0.003 0.007" repeatCount="indefinite" />
-      </feTurbulence>
-      <feDisplacementMap in="SourceGraphic" in2="waterNoise" scale="9" xChannelSelector="R" yChannelSelector="G">
-        <animate attributeName="scale" dur="1.45s" values="3;10;6;8" keyTimes="0;0.35;0.7;1" />
-      </feDisplacementMap>
-    </filter>
-  </svg>
-  <div class="liquid-wipe" id="liquid-wipe" aria-hidden="true"></div>
+  <canvas class="liquid-canvas" id="liquid-canvas" aria-hidden="true"></canvas>
   <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
   <header class="topbar glass">
     <a class="wordmark" href="#inicio" aria-label="Javier Vera, inicio">JV<span>®</span><small>DISEÑO GRÁFICO<br> DIRECCIÓN DE ARTE</small></a>

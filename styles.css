@@ -9,38 +9,9 @@ html{scroll-behavior:auto}
 .view-panel{display:none;min-height:calc(100svh - 96px);width:100%;transform-origin:50% 50%;backface-visibility:hidden}
 .view-panel.is-active{display:block;animation:content-arrive .42s cubic-bezier(.2,.75,.25,1) both}
 @keyframes content-arrive{0%{opacity:.25;transform:scale(.985)}100%{opacity:1;transform:scale(1)}}
-/* Transición: membrana de silicona transparente con borde refractivo, centrada en el viewport */
-.filter-defs{position:absolute;pointer-events:none}
-.liquid-wipe{
-  position:fixed;z-index:9999;pointer-events:none;inset:0;opacity:0;
-  clip-path:circle(0vmax at 50% 50%);
-  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.018) 0%,rgba(150,225,255,.035) 58%,rgba(255,255,255,.045) 72%,rgba(255,255,255,.01) 100%);
-  mix-blend-mode:screen;will-change:clip-path,opacity;
-}
-.liquid-wipe::before,.liquid-wipe::after{content:"";position:absolute;inset:0;pointer-events:none;clip-path:inherit}
-/* Borde de gel: reflejo fino, no un aro blanco grueso */
-.liquid-wipe::before{
-  background:radial-gradient(circle at 50% 50%,transparent 0 calc(100% - 12px),rgba(255,255,255,.10) calc(100% - 10px),rgba(255,255,255,.48) calc(100% - 7px),rgba(185,242,255,.72) calc(100% - 4px),rgba(255,255,255,.34) calc(100% - 2px),transparent 100%);
-  opacity:.72;
-}
-/* Pequeños brillos especulares desplazados, como una lámina de silicona húmeda */
-.liquid-wipe::after{
-  background:radial-gradient(ellipse at 34% 29%,rgba(255,255,255,.13),transparent 15%),radial-gradient(ellipse at 70% 68%,rgba(150,230,255,.10),transparent 18%);
-  opacity:.55;mix-blend-mode:screen;
-}
-.liquid-wipe.is-spreading{opacity:1;animation:gel-spread .82s cubic-bezier(.22,.72,.22,1) both}
-.liquid-wipe.is-clearing{opacity:1;animation:gel-clear .28s ease-out both}
-@keyframes gel-spread{
-  0%{opacity:0;clip-path:circle(0vmax at 50% 50%)}
-  8%{opacity:.92;clip-path:circle(9vmax at 50% 50%)}
-  32%{opacity:.86;clip-path:circle(34vmax at 50% 50%)}
-  68%{opacity:.72;clip-path:circle(75vmax at 50% 50%)}
-  100%{opacity:.45;clip-path:circle(115vmax at 50% 50%)}
-}
-@keyframes gel-clear{
-  from{opacity:.45;clip-path:circle(115vmax at 50% 50%)}
-  to{opacity:0;clip-path:circle(125vmax at 50% 50%)}
-}
+/* WebGL: membrana líquida transparente. La superficie no dibuja un círculo sólido. */
+.liquid-canvas{position:fixed;inset:0;width:100%;height:100%;z-index:9999;pointer-events:none;opacity:0;display:block;}
+.liquid-canvas.is-active{opacity:1;}
 .nav-pills a,.contact-pill,.round-arrow,.footer a{cursor:pointer}
 .nav-pills a{transition:background .28s ease,box-shadow .28s ease,color .28s ease}
 .nav-pills a:not(.active):hover{background:rgba(255,255,255,.09)}
@@ -49,4 +20,4 @@ html{scroll-behavior:auto}
 .view-panel .approach{min-height:calc(100svh - 100px);display:flex;flex-direction:column;justify-content:center}
 .view-panel .contact-section{min-height:calc(100svh - 150px)}
 @media(max-width:760px){.view-container,.view-panel{min-height:calc(100svh - 80px)}.view-panel .hero{min-height:calc(100svh - 80px)}.view-panel .project-section{padding-top:42px}}
-@media(prefers-reduced-motion:reduce){.view-panel.is-active{animation:none}.liquid-wipe{display:none}}
+@media(prefers-reduced-motion:reduce){.view-panel.is-active{animation:none}.liquid-canvas{display:none}}
