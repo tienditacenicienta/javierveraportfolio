@@ -1,19 +1,17 @@
-# JV® 2050 — Javier Vera
+# Javier Vera® — Portafolio interactivo
 
-Portafolio conceptual con estética de interfaz creativa futurista, manteniendo el branding azul eléctrico, blanco y negro, tipografía condensada y el mensaje «¿Necesitas diseño? Resuelto.».
-
-## Funciones
-- Portada con HUD, retícula, órbitas y línea SVG animada.
-- Movimiento parallax ligado al cursor y coordenadas en tiempo real.
-- Portafolio filtrable por branding, campañas y digital.
-- Reordenamiento aleatorio de proyectos.
-- Modal con descripción y proceso de cada caso.
-- Matriz de marcas, diseño responsive y soporte para movimiento reducido.
+- Branding: azul eléctrico, blanco, negro, tipografía condensada y mensaje «¿Necesitas diseño? Resuelto.»
+- Trayectoria: empresas/agencias y marcas presentadas por separado.
+- Collage asimétrico filtrable por branding, campañas y digital.
+- Fichas de proyecto interactivas.
+- Sección «Tu proyecto. Tu presupuesto.» comunica flexibilidad sin publicar tarifas fijas.
+- Portada con órbitas, trazo SVG animado y parallax.
+- HTML/CSS/JS puro, sin compilación ni dependencias.
 
 ## Antes de publicar
-- Sustituye `TU_CORREO@ejemplo.com` en `index.html`.
-- Los casos son composiciones visuales conceptuales, no artes finales originales. Sustitúyelos por tus proyectos reales.
-- Verifica las marcas y el permiso para mostrarlas.
+1. Cambia `TU_CORREO@ejemplo.com` en `index.html`.
+2. Sustituye las composiciones visuales demostrativas por trabajos reales.
+3. Revisa la relación exacta con cada empresa/marca, tus funciones y los permisos para mostrar sus nombres/logotipos. Ajusta las descripciones a tu participación real.
 
 ## GitHub + Cloudflare Pages
-Sube `index.html`, `styles.css`, `script.js` y `README.md` a la raíz de tu repo. En Cloudflare Pages conecta el repo; preset **None**, build command vacío y output directory `/` o `.` según la interfaz. No necesita compilación ni dependencias.
+Sube `index.html`, `styles.css`, `script.js` y `README.md` a la raíz del repositorio. Conecta el repo en Cloudflare Pages con preset `None`, build command vacío y output directory `/` o `.`. No requiere compilación.

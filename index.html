@@ -1,95 +1,40 @@
 <!doctype html>
-<html lang="es">
-<head>
+<html lang="es"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#075cff">
-<meta name="description" content="Javier Vera — Diseño gráfico, publicidad, redes sociales y branding.">
-<title>JV® 2050 — Javier Vera</title>
+<meta name="theme-color" content="#075cff"><meta name="description" content="Javier Vera. Diseño gráfico, publicidad, branding y contenido digital.">
+<title>Javier Vera® — ¿Necesitas diseño? Resuelto.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-<div class="scan-progress" id="progress"></div>
-<header class="nav">
-  <a class="logo" href="#inicio" aria-label="Javier Vera inicio">JV<span>®</span></a>
-  <div class="nav-status"><span class="status-dot"></span> CREATIVE SYSTEM <b>ONLINE</b><span class="nav-divider">/</span> 2050</div>
-  <a href="#contacto" class="nav-contact">INICIAR PROYECTO <span>↗</span></a>
-</header>
-
+<link rel="stylesheet" href="./styles.css"></head><body>
+<div class="progress" id="progress"></div>
+<header><a class="logo" href="#inicio">JV<span>®</span></a><div class="nav-label">DISEÑO GRÁFICO · PUBLICIDAD · BRANDING</div><a class="nav-cta" href="#contacto">HABLEMOS ↗</a></header>
 <main>
-<section class="hero" id="inicio">
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="hero-top"><span>JAVIER VERA® / CREATIVE PORTFOLIO</span><span>PERÚ · GLOBAL REMOTE</span></div>
-  <div class="hero-core" id="heroCore">
-    <div class="hud hud-left"><span>DESIGN</span><i></i><span>STRATEGY</span><i></i><span>EXECUTION</span></div>
-    <div class="hero-title">
-      <p class="eyebrow"><span class="blink"></span> DISEÑADOR GRÁFICO PROFESIONAL</p>
-      <h1><span>¿NECESITAS</span><span class="second-line">DISEÑO<span class="q">?</span></span></h1>
-      <div class="answer-line"><span class="answer">Resuelto.</span><span class="answer-arrow">↗</span><span class="answer-sub">PUBLICIDAD / REDES SOCIALES / BRANDING</span></div>
-    </div>
-    <div class="target target-a"></div><div class="target target-b"></div>
-    <div class="floating-label label-a">VISUAL SYSTEM <b>01</b></div>
-    <div class="floating-label label-b">SIGNAL: CLEAR <b>100%</b></div>
-    <svg class="draw-path" viewBox="0 0 620 260" aria-hidden="true"><path d="M8 208 C60 10 130 250 214 120 S345 14 388 123 S520 230 612 25"/></svg>
-    <div class="pointer-readout"><span>CURSOR POSITION</span><b id="readout">X 50 / Y 50</b></div>
-  </div>
-  <div class="hero-bottom"><span>DISEÑO GRÁFICO DESDE 2017</span><span>MODALIDAD REMOTA DESDE 2020</span><a href="#archivo">EXPLORAR ARCHIVO <b>↓</b></a></div>
-  <div class="edge-code">JV—2050—001</div>
-</section>
+<section class="hero" id="inicio"><div class="grid-bg"></div><div class="topline"><span>PORTAFOLIO / 2026</span><span>9+ AÑOS DE EXPERIENCIA</span></div>
+<div class="hero-stage" id="heroStage"><div class="orbit orbit1"></div><div class="orbit orbit2"></div><div class="orbit orbit3"></div>
+<div class="hero-copy"><p class="kicker">● HOLA. SOY JAVIER VERA.</p><h1>¿NECESITAS<br>DISEÑO<span>?</span></h1><div class="answer"><b>Resuelto. ↗</b><small>PUBLICIDAD / REDES / BRANDING</small></div></div>
+<div class="edge-note left">DISEÑO CON CRITERIO<br>ENTREGA CON PROPÓSITO</div><div class="edge-note right" id="coords">CURSOR / 50 : 50</div>
+<svg class="scribble" viewBox="0 0 460 200"><path d="M6 158 C55 5 105 222 174 105 S285 4 328 102 S404 177 454 20"/></svg><div class="stamp">IDEA<br>↓<br>FORMA</div></div>
+<div class="bottomline"><span>EXPERIENCIA DESDE 2017</span><a href="#experiencia">EXPERIENCIA ↓</a><a href="#trabajos">VER PORTAFOLIO ↓</a></div></section>
 
-<section class="archive" id="archivo">
-  <div class="section-head">
-    <div><p class="eyebrow">01 / VISUAL ARCHIVE</p><h2>DISEÑOS<span>.</span><br><em>Y DISEÑOS.</em></h2></div>
-    <div class="section-note"><span class="note-number">[ 06 CASES ]</span><p>Publicidad, branding y contenido visual para marcas de distintos sectores. Selecciona un caso para ver el objetivo y las decisiones de diseño.</p><span class="note-bottom">INTERACTIVE INDEX ↗</span></div>
-  </div>
-  <div class="archive-toolbar">
-    <div class="filters">
-      <button class="filter active" data-filter="all">TODOS <span>06</span></button>
-      <button class="filter" data-filter="branding">BRANDING <span>02</span></button>
-      <button class="filter" data-filter="campanas">CAMPAÑAS <span>02</span></button>
-      <button class="filter" data-filter="digital">DIGITAL <span>02</span></button>
-    </div>
-    <button class="reconfigure" id="reconfigure"><span>⟳</span> RECONFIGURAR VISTA</button>
-  </div>
-  <div class="work-grid" id="workGrid">
-    <button class="work-card wide" data-type="branding" data-title="UltraGear Gaming Academy" data-category="BRANDING / GAMING" data-description="Dirección gráfica para una marca vinculada al universo gaming. La composición prioriza energía, jerarquía y códigos visuales propios de la comunidad." data-process="CONTRASTE + JERARQUÍA + IDENTIDAD">
-      <div class="card-top"><span>CASE_001 / BRANDING</span><span>OPEN DATA ↗</span></div><div class="art art-gaming"><div class="radar"></div><div class="ug-symbol"><span>U</span><b>G</b></div><div class="ug-title">ULTRAGEAR<small>GAMING ACADEMY</small></div><span class="art-coord">-12.0464 / -77.0428</span></div><div class="card-bottom"><b>UltraGear Gaming Academy</b><span>IDENTIDAD VISUAL <i>↗</i></span></div>
-    </button>
-    <button class="work-card" data-type="branding" data-title="Diseño aplicado a licencias" data-category="BRANDING / PRODUCTO" data-description="Diseño aplicado a productos y materiales comerciales con licencias oficiales. El reto es mantener reconocible el universo de marca y adaptarlo al formato." data-process="LICENCIA + APLICACIÓN + RETAIL">
-      <div class="card-top"><span>CASE_002 / BRANDING</span><span>↗</span></div><div class="art art-license"><div class="burst"></div><div class="marvel">MARVEL</div><div class="license-copy">DISEÑO<br><em>APLICADO.</em></div><span class="micro-tag">IP / PRODUCT DESIGN</span></div><div class="card-bottom"><b>Diseño aplicado a licencias</b><span>PRODUCTO <i>↗</i></span></div>
-    </button>
-    <button class="work-card" data-type="campanas" data-title="Volta Challenge" data-category="CAMPAÑA / EVENTO" data-description="Pieza promocional de lenguaje deportivo, con diagonales, contraste cromático y una composición pensada para destacar en digital." data-process="CONCEPTO + KEY VISUAL + ADAPTACIÓN">
-      <div class="card-top"><span>CASE_003 / CAMPAÑAS</span><span>↗</span></div><div class="art art-volta"><div class="volta-ellipse"></div><span class="volta-id">FIFA20 / LIVE EVENT</span><div class="volta-type">VOLTA<br><em>CHALLENGE</em></div><span class="volta-label">BY ESB</span></div><div class="card-bottom"><b>Volta Challenge</b><span>KEY VISUAL <i>↗</i></span></div>
-    </button>
-    <button class="work-card" data-type="campanas" data-title="Point Aventura" data-category="CAMPAÑA / RETAIL" data-description="Comunicación promocional para entretenimiento. La oferta principal se convierte en el foco visual y facilita una lectura inmediata." data-process="BENEFICIO + JERARQUÍA + ACCIÓN">
-      <div class="card-top"><span>CASE_004 / CAMPAÑAS</span><span>↗</span></div><div class="art art-point"><span class="point-label">PROMO ACTIVATED</span><div class="point-deal">3<span>×</span>2</div><div class="point-copy">EN PASES</div><span class="point-ribbon">COMPRA 2 Y EL TERCERO ES GRATIS</span></div><div class="card-bottom"><b>Point Aventura</b><span>CAMPAÑA <i>↗</i></span></div>
-    </button>
-    <button class="work-card" data-type="digital" data-title="Publicidad y redes sociales" data-category="DIGITAL / CONTENIDO" data-description="Piezas para redes sociales, campañas y web. Cada formato organiza el mensaje para que sea claro, reconocible y coherente con la marca." data-process="MENSAJE + FORMATO + CONSISTENCIA">
-      <div class="card-top"><span>CASE_005 / DIGITAL</span><span>↗</span></div><div class="art art-social"><div class="social-window"><span>FEED / 1080 × 1350</span><div class="social-type">MENOS<br><em>RUIDO.</em><br>MÁS IDEA.</div><div class="social-block"></div></div><span class="social-code">CONTENT<br>SYSTEM 5.0</span></div><div class="card-bottom"><b>Publicidad y redes sociales</b><span>CONTENIDO <i>↗</i></span></div>
-    </button>
-    <button class="work-card" data-type="digital" data-title="Comunicación comercial" data-category="DIGITAL / IMPRESIÓN" data-description="Piezas comerciales, institucionales y técnicas preparadas para medios digitales e impresión, con atención a la claridad y la producción final." data-process="INFORMACIÓN + DISEÑO + ENTREGA">
-      <div class="card-top"><span>CASE_006 / DIGITAL</span><span>↗</span></div><div class="art art-system"><div class="system-cells"><span>A</span><span>B</span><span>C</span><span>D</span></div><div class="system-type">CLARO.<br><em>FUNCIONAL.</em><br>LISTO.</div><span class="system-id">JV® / VISUAL ENGINE</span></div><div class="card-bottom"><b>Comunicación comercial</b><span>SISTEMA VISUAL <i>↗</i></span></div>
-    </button>
-  </div>
-  <div class="archive-footer"><span>END OF CURRENT INDEX</span><span>MORE PROJECTS CAN BE ADDED ↗</span></div>
+<section class="section" id="experiencia"><div class="section-head"><div><p class="index">01 / TRAYECTORIA</p><h2>Experiencia<br><em>que suma.</em></h2></div><p class="intro">He trabajado con empresas, agencias y marcas de distintos sectores, desarrollando piezas de comunicación, campañas, branding y contenido digital.</p></div>
+<div class="experience"><div class="companies"><span class="label">EMPRESAS / AGENCIAS</span><h3>He colaborado<br>desde dentro.</h3><p>Experiencia en equipos de marketing y diseño, agencias y proyectos independientes.</p><div class="company-list"><span>PORTA</span><span>MATERNELLE</span><span>PIMIENTA</span><span>CIRCUIT MEDIA GROUP</span><span>OEA EDUCATION</span><span>BERIZA</span><span>GRAVITY</span><span>AUSENCO</span><span>SISTEMAV</span><span>LATAM5S</span></div></div>
+<div class="brands"><div class="brand-head"><span class="label">MARCAS / PROYECTOS</span><span class="micro">SELECCIÓN DE EXPERIENCIA ↗</span></div><div class="brand-grid"><span class="disney">Disney</span><span class="marvel">MARVEL</span><span class="lg">LG</span><span class="play">PLAYSTATION</span><span class="logi">logitech G</span><span class="claro">CLARO <small>GAMING</small></span><span class="mass">MASS</span><span class="yaqua">YAQUA</span><span class="cod">CALL OF DUTY<br>WARZONE</span></div><p class="fineprint">Proyectos realizados dentro de empresas, agencias y colaboraciones. La participación específica se detalla en cada caso cuando corresponde.</p></div></div></section>
 
-  <div class="experience">
-    <div class="experience-label"><span>02 / EXPERIENCIA</span><span>EMPRESAS & MARCAS</span><span>9+ AÑOS</span></div>
-    <div class="experience-main"><div class="experience-statement"><h3>Diseño gráfico.<br><span>Comunicación visual.</span></h3><p>Experiencia con agencias, empresas y proyectos freelance. Dirección de arte, branding, campañas, contenido digital y piezas para impresión.</p></div>
-      <div class="brand-matrix"><span>PORTA</span><span>MATERNELLE</span><span>MARVEL</span><span>DISNEY</span><span>PLAYSTATION</span><span>LOGITECH G</span><span>YAQUA</span><span>ENEL</span><span>LATAM5S</span><span>GRAVITY</span><span>OVACO PERÚ</span><span>PMO VÍAS</span></div>
-    </div>
-  </div>
-</section>
+<section class="section portfolio" id="trabajos"><div class="section-head"><div><p class="index">02 / PORTAFOLIO VISUAL</p><h2>Menos texto.<br><em>Más diseño.</em></h2></div><p class="intro">Una selección visual de proyectos. Filtra por especialidad o abre una pieza para ver el contexto.</p></div>
+<div class="toolbar"><div class="filters"><button class="filter active" data-filter="all">TODO <small>06</small></button><button class="filter" data-filter="branding">BRANDING <small>02</small></button><button class="filter" data-filter="campaign">CAMPAÑAS <small>02</small></button><button class="filter" data-filter="digital">DIGITAL <small>02</small></button></div><span class="micro">● SELECCIONA UNA PIEZA</span></div>
+<div class="collage" id="collage">
+<button class="project project-a" data-cat="branding" data-title="UltraGear / Gaming" data-client="BRANDING · KEY VISUAL" data-desc="Dirección gráfica para una marca vinculada al universo gaming. Contraste, jerarquía y códigos visuales que conectan con la comunidad." data-role="Dirección visual · Diseño de piezas"><span class="num">01 / BRANDING</span><div class="art ultra"><div class="rings"></div><div class="ug">U<span>G</span></div><div class="wordmark">ULTRAGEAR<small>GAMING ACADEMY</small></div><small class="artnote">VISUAL SYSTEM / 001</small></div><span class="caption"><b>UltraGear / Gaming</b><i>VER PIEZA ↗</i></span></button>
+<button class="project project-b" data-cat="branding" data-title="Diseño aplicado a licencias" data-client="BRANDING · PRODUCTO" data-desc="Adaptación de universos de marca a piezas y aplicaciones comerciales, manteniendo el reconocimiento visual y la coherencia con el producto." data-role="Diseño gráfico · Aplicaciones comerciales"><span class="num">02 / LICENCIAS</span><div class="art license"><div class="rays"></div><div class="marvel-logo">MARVEL</div><div class="license-copy">DISEÑO<br><em>APLICADO.</em></div></div><span class="caption"><b>Diseño aplicado a licencias</b><i>VER PIEZA ↗</i></span></button>
+<button class="project project-c" data-cat="campaign" data-title="Volta Challenge" data-client="CAMPAÑA · EVENTO" data-desc="Pieza promocional de lenguaje deportivo. Diagonales, alto contraste y composición enfocada en comunicar energía y competencia." data-role="Key visual · Comunicación de campaña"><span class="num">03 / CAMPAÑA</span><div class="art volta"><span class="micro top">FIFA20 / LIVE EVENT</span><div class="loop"></div><div class="volta-title">VOLTA<br><em>CHALLENGE</em></div><span class="micro bottom">BY ESB</span></div><span class="caption"><b>Volta Challenge</b><i>VER PIEZA ↗</i></span></button>
+<button class="project project-d" data-cat="campaign" data-title="Point Aventura" data-client="CAMPAÑA · RETAIL" data-desc="Comunicación promocional para entretenimiento. La oferta principal se convierte en el foco visual para facilitar una lectura rápida." data-role="Diseño de campaña · Pieza promocional"><span class="num">04 / RETAIL</span><div class="art point"><span class="micro top">PROMOCIÓN ACTIVA</span><div class="deal">3<span>×</span>2</div><div class="passes">EN PASES</div><span class="band">COMPRA 2 Y EL TERCERO ES GRATIS</span></div><span class="caption"><b>Point Aventura</b><i>VER PIEZA ↗</i></span></button>
+<button class="project project-e" data-cat="digital" data-title="Publicidad y redes sociales" data-client="DIGITAL · CONTENIDO" data-desc="Piezas para redes sociales, campañas y web. Cada formato organiza el mensaje para mantener claridad, consistencia y reconocimiento." data-role="Diseño digital · Adaptaciones por formato"><span class="num">05 / DIGITAL</span><div class="art social"><div class="social-frame"><small>FEED / 1080 × 1350</small><div class="social-title">MENOS<br><em>RUIDO.</em><br>MÁS IDEA.</div><div class="social-block"></div></div></div><span class="caption"><b>Publicidad y redes sociales</b><i>VER PIEZA ↗</i></span></button>
+<button class="project project-f" data-cat="digital" data-title="Comunicación comercial" data-client="DIGITAL · IMPRESIÓN" data-desc="Piezas comerciales e institucionales para distintos canales, organizando la información con jerarquía clara y preparación para producción." data-role="Diseño gráfico · Preparación de archivos"><span class="num">06 / COMUNICACIÓN</span><div class="art system"><div class="cells"><span>A</span><span>B</span><span>C</span><span>D</span></div><div class="system-title">CLARO.<br><em>FUNCIONAL.</em><br>LISTO.</div></div><span class="caption"><b>Comunicación comercial</b><i>VER PIEZA ↗</i></span></button>
+</div><p class="disclaimer">Las piezas actuales son demostraciones visuales. Sustitúyelas por tus proyectos reales antes de publicar la versión definitiva.</p></section>
 
-<section class="contact" id="contacto">
-  <div class="contact-grid"></div>
-  <div class="contact-top"><span>JV® / 2050</span><span>DESIGN · ADVERTISING · BRANDING</span><span>CONNECTION OPEN</span></div>
-  <div class="contact-main"><p class="eyebrow"><span class="blink"></span> ¿TIENES UN PROYECTO?</p><h2>¿NECESITAS<br>DISEÑO<span>?</span></h2><a href="mailto:TU_CORREO@ejemplo.com?subject=Proyecto%20de%20dise%C3%B1o" class="contact-cta"><span>Resuelto.</span><b>INICIAR CONTACTO ↗</b></a></div>
-  <footer><span>JAVIER VERA®</span><span>DISEÑO GRÁFICO DESDE 2017</span><a href="#inicio">VOLVER AL INICIO ↑</a></footer>
-</section>
+<section class="budget"><div class="budget-top"><span class="index">03 / PROYECTOS A MEDIDA</span><span class="micro">ALCANCE FLEXIBLE / PROPUESTA PERSONALIZADA</span></div><div class="budget-main"><h2>Tu proyecto.<br><em>Tu presupuesto.</em></h2><div><p>Cuéntame qué necesitas y cuánto tienes previsto invertir. Definiremos un alcance realista y una propuesta de diseño acorde a tus objetivos.</p><a href="#contacto">HABLEMOS DE TU PROYECTO <b>↗</b></a></div></div><div class="budget-bottom"><span>NO HAY DOS PROYECTOS IGUALES.</span><span>EL ALCANCE SE DEFINE EN CONJUNTO.</span></div></section>
+
+<section class="contact" id="contacto"><div class="grid-bg"></div><div class="contact-top"><span>JAVIER VERA®</span><span>DISEÑO GRÁFICO · PUBLICIDAD · BRANDING</span><span>PERÚ / REMOTO</span></div><div class="contact-main"><p class="kicker">● ¿TIENES UN PROYECTO?</p><h2>¿NECESITAS<br>DISEÑO<span>?</span></h2><a href="mailto:TU_CORREO@ejemplo.com?subject=Proyecto%20de%20dise%C3%B1o"><b>Resuelto.</b><small>INICIAR CONTACTO ↗</small></a></div><footer><span>PORTAFOLIO 2026</span><span>EXPERIENCIA DESDE 2017</span><a href="#inicio">VOLVER ARRIBA ↑</a></footer></section>
 </main>
 
-<div class="case-overlay" id="overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="overlay-bg" data-close></div><div class="detail-card"><button class="close" data-close aria-label="Cerrar">×</button><span id="detailCategory" class="detail-category"></span><h2 id="detailTitle"></h2><p id="detailDescription"></p><div class="detail-process" id="detailProcess"></div><a href="#contacto" id="detailContact">CONSULTAR POR UN PROYECTO SIMILAR ↗</a></div></div>
-<script src="./script.js"></script>
-</body></html>
+<div class="modal" id="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="backdrop" data-close aria-label="Cerrar detalle"></button><div class="modal-box"><button class="close" data-close aria-label="Cerrar">×</button><span class="modal-client" id="modalClient"></span><h2 id="modalTitle"></h2><p id="modalDesc"></p><div class="role"><small>MI PARTICIPACIÓN</small><b id="modalRole"></b></div><a href="#contacto" id="modalContact">HABLEMOS DE UN PROYECTO SIMILAR ↗</a></div></div>
+<script src="./script.js"></script></body></html>
