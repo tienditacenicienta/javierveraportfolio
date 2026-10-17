@@ -21,3 +21,9 @@ html{scroll-behavior:auto}
 .view-panel .contact-section{min-height:calc(100svh - 150px)}
 @media(max-width:760px){.view-container,.view-panel{min-height:calc(100svh - 80px)}.view-panel .hero{min-height:calc(100svh - 80px)}.view-panel .project-section{padding-top:42px}}
 @media(prefers-reduced-motion:reduce){.view-panel.is-active{animation:none}.liquid-canvas{display:none}}
+
+/* Reveal líquido: la nueva vista aparece dentro de una máscara orgánica que se expande. */
+.view-panel.is-revealing{display:block!important;position:absolute;inset:0;z-index:2;overflow:hidden;will-change:clip-path;clip-path:polygon(50% 50%,50% 50%,50% 50%);}
+.view-panel.is-under-reveal{display:block!important;position:relative;z-index:1;}
+.liquid-canvas{z-index:3;mix-blend-mode:screen;}
+@media(prefers-reduced-motion:reduce){.view-panel.is-revealing{clip-path:none!important;}}

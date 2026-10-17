@@ -86,16 +86,70 @@ function createLiquidShader(canvas) {
   return { run(onCover){ cancelAnimationFrame(raf); resize(); start=performance.now(); duration=1380; active=true; canvas.classList.add('is-active'); let changed=false; function tick(now){ if(!active)return; resize(); const raw=Math.min(1,(now-start)/duration); const eased=raw<.5?4*raw*raw*raw:1-Math.pow(-2*raw+2,3)/2; gl.clearColor(0,0,0,0); gl.clear(gl.COLOR_BUFFER_BIT); gl.uniform1f(uniforms.time,now*.001); gl.uniform1f(uniforms.progress,eased); gl.drawArrays(gl.TRIANGLE_STRIP,0,4); if(!changed && raw>.52){changed=true;onCover();} if(raw<1)raf=requestAnimationFrame(tick); else {active=false;canvas.classList.remove('is-active');} } raf=requestAnimationFrame(tick); }, cancel(){active=false;cancelAnimationFrame(raf);canvas.classList.remove('is-active');} };
 }
 const liquid = createLiquidShader(liquidCanvas);
+function makeLiquidMask(progress, time = 0) {
+  const points = 84;
+  const maxR = Math.hypot(window.innerWidth, window.innerHeight) * 0.78;
+  const radius = Math.max(1, progress * maxR);
+  const cx = 50, cy = 50;
+  const rx = radius / Math.max(1, window.innerWidth) * 100;
+  const ry = radius / Math.max(1, window.innerHeight) * 100;
+  const coords = [];
+  for (let i = 0; i < points; i++) {
+    const a = (i / points) * Math.PI * 2;
+    // Ondulación amplia, orgánica y suave; evita el círculo perfecto.
+    const wave = 1 + 0.13 * Math.sin(a * 2.0 + time * 0.75)
+      + 0.075 * Math.sin(a * 3.0 - time * 0.55)
+      + 0.035 * Math.sin(a * 5.0 + time * 0.38);
+    const x = cx + Math.cos(a) * rx * wave;
+    const y = cy + Math.sin(a) * ry * wave;
+    coords.push(`${x.toFixed(2)}% ${y.toFixed(2)}%`);
+  }
+  return `polygon(${coords.join(',')})`;
+}
+
 function showView(nextView, updateHistory=true) {
   if(!nextView || nextView===currentView || switchingView) return;
-  if(!document.querySelector(`[data-view="${nextView}"]`)) return;
+  const nextPanel = document.querySelector(`[data-view="${nextView}"]`);
+  if(!nextPanel) return;
   if(updateHistory) history.replaceState({view:nextView},'',`#${nextView}`);
   if(reducedMotion.matches || !liquid){setActiveView(nextView);return;}
-  switchingView=true;
-  let swapped=false;
-  const swap=()=>{if(swapped)return;swapped=true;setActiveView(nextView);};
-  liquid.run(swap);
-  window.setTimeout(()=>{swap();switchingView=false;},1510);
+
+  switchingView = true;
+  const oldPanel = document.querySelector(`[data-view="${currentView}"]`);
+  const started = performance.now();
+  const duration = 1320;
+  nextPanel.classList.add('is-revealing');
+  nextPanel.style.clipPath = makeLiquidMask(0);
+  nextPanel.setAttribute('aria-hidden','false');
+  let raf = 0;
+  const animateMask = (now) => {
+    const raw = Math.min(1, (now - started) / duration);
+    const eased = 1 - Math.pow(1 - raw, 3.2);
+    nextPanel.style.clipPath = makeLiquidMask(eased, now * 0.001);
+    if (raw < 1) {
+      raf = requestAnimationFrame(animateMask);
+    } else {
+      nextPanel.style.clipPath = '';
+      nextPanel.classList.remove('is-revealing');
+      setActiveView(nextView);
+      switchingView = false;
+    }
+  };
+  nextPanel.style.display = 'block';
+  nextPanel.style.position = 'absolute';
+  nextPanel.style.inset = '0';
+  nextPanel.style.width = '100%';
+  nextPanel.style.zIndex = '2';
+  oldPanel?.classList.add('is-under-reveal');
+  liquid.run(() => {});
+  raf = requestAnimationFrame(animateMask);
+  window.setTimeout(() => {
+    oldPanel?.classList.remove('is-under-reveal');
+    nextPanel.style.position = '';
+    nextPanel.style.inset = '';
+    nextPanel.style.width = '';
+    nextPanel.style.zIndex = '';
+  }, duration + 30);
 }
 viewLinks.forEach(link=>link.addEventListener('click',event=>{event.preventDefault();showView(link.dataset.viewLink,true);}));
 function syncViewFromHash(){const requested=window.location.hash.replace('#','')||'inicio';if(requested!==currentView)showView(requested,false);}
