@@ -3,7 +3,7 @@
 Sitio estático en HTML, CSS y JavaScript. No requiere framework, dependencias ni build.
 
 ## Antes de publicar
-1. En `script.js`, reemplaza `whatsapp` y `email` por tus datos reales.
+1. En `script.js`, reemplaza `whatsapp` por tu número real con código de país, sin +, espacios ni guiones.
 2. Sustituye las 8 composiciones de muestra en `assets/proyectos/` por tus proyectos finales y actualiza las rutas `src`/`href` en `index.html`. Las imágenes SVG actuales son placeholders de diseño, no trabajos reales.
 3. Incorpora los logos oficiales en `assets/logos/` y actualiza las rutas en el HTML. La lista de marcas es orientativa: confirma que cada una represente correctamente tu participación y que puedas mostrarla.
 4. Coloca tu CV en `assets/Javier-Vera-CV.pdf` o modifica el enlace “Ver CV”.
@@ -23,5 +23,11 @@ Usa preferentemente WebP/JPG optimizado, lado largo de 1600–2200 px y peso apr
 
 ## Contenido
 - No se usan filtros ni etiquetas de categoría.
-- El presupuesto se conversa según el objetivo y alcance; no hay tarifas fijas visibles.
+- El presupuesto se conversa según el objetivo y alcance; no hay tarifas fijas visibles. El formulario de proyecto prepara el mensaje y abre WhatsApp para que el visitante lo envíe.
 - Verifica nombres de marcas y permisos antes de publicar.
+
+## Versión 2
+- Se eliminó la barra superior, las etiquetas y las líneas auxiliares de las secciones.
+- Se compactaron los espacios verticales y se quitó el bloque de servicios “Visión y oficio”.
+- El formulario de proyecto abre WhatsApp con el texto que la persona escriba. El visitante confirma el envío desde WhatsApp.
+- Recuerda reemplazar el número de muestra `51999999999` en `script.js`.
