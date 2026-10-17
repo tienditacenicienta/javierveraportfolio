@@ -1,8 +1,13 @@
-const $=(s,p=document)=>p.querySelector(s),$$=(s,p=document)=>[...p.querySelectorAll(s)];
-window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;$('#progress').style.width=(max?scrollY/max*100:0)+'%'},{passive:true});
-const hero=$('#heroStage');window.addEventListener('load',()=>$('.hero').classList.add('loaded'));
-if(matchMedia('(hover:hover) and (pointer:fine)').matches){hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;$('.hero-copy').style.setProperty('--mx',x*15+'px');$('.hero-copy').style.setProperty('--my',y*11+'px');$('.orbit1').style.transform=`translate(calc(-50% + ${-x*18}px),calc(-50% + ${-y*13}px))`;$('.orbit2').style.transform=`translate(calc(-50% + ${x*23}px),calc(-50% + ${y*17}px)) rotate(48deg) scaleX(.48)`;$('.orbit3').style.transform=`translate(calc(-50% + ${-x*25}px),calc(-50% + ${y*20}px)) rotateX(64deg) rotate(-22deg)`;$('#coords').textContent=`CURSOR / ${String(Math.round((x+.5)*100)).padStart(2,'0')} : ${String(Math.round((y+.5)*100)).padStart(2,'0')}`;});hero.addEventListener('pointerleave',()=>{$('.hero-copy').style.setProperty('--mx','0px');$('.hero-copy').style.setProperty('--my','0px');$('#coords').textContent='CURSOR / 50 : 50';});}
-$$('.filter').forEach(btn=>btn.addEventListener('click',()=>{$$('.filter').forEach(b=>b.classList.toggle('active',b===btn));$$('.project').forEach(c=>c.classList.toggle('hidden',btn.dataset.filter!=='all'&&c.dataset.cat!==btn.dataset.filter));}));
-const modal=$('#modal');let previous=null;$$('.project').forEach(card=>card.addEventListener('click',()=>{previous=card;$('#modalClient').textContent=card.dataset.client;$('#modalTitle').textContent=card.dataset.title;$('#modalDesc').textContent=card.dataset.desc;$('#modalRole').textContent=card.dataset.role;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('.close').focus();}));
-function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';if(previous)previous.focus();}
-$$('[data-close]').forEach(el=>el.addEventListener('click',closeModal));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});$('#modalContact').addEventListener('click',closeModal);
+// Configura tus datos reales antes de publicar.
+const CONFIG = { whatsapp: "51999999999", email: "hola@javiervera.design" };
+document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("whatsapp-link").href = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent("Hola Javier, vi tu portafolio y quisiera conversar sobre un proyecto.")}`;
+document.getElementById("email-link").href = `mailto:${CONFIG.email}`;
+const dialog = document.getElementById("lightbox"), preview = dialog.querySelector("img");
+document.querySelectorAll("[data-project]").forEach((card) => card.addEventListener("click", (event) => {
+  event.preventDefault(); const img = card.querySelector("img"); preview.src = img.currentSrc || img.src; preview.alt = img.alt;
+  if (dialog.showModal) dialog.showModal();
+}));
+dialog.querySelector(".lightbox-close").addEventListener("click", () => dialog.close());
+dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+dialog.addEventListener("close", () => { preview.src = ""; });
