@@ -3,50 +3,46 @@
 .project-card{translate:var(--move-x,0) var(--move-y,0)}
 
 
-/* Navegación por vistas: expansión central de agua transparente */
+/* Transición líquida: onda central, limpia y breve, con borde refractivo visible. */
 html{scroll-behavior:auto}
 .view-container{position:relative;min-height:calc(100svh - 96px);isolation:isolate;overflow:clip}
 .view-panel{display:none;min-height:calc(100svh - 96px);width:100%;transform-origin:50% 50%;backface-visibility:hidden}
-.view-panel.is-active{display:block;animation:content-arrive .62s cubic-bezier(.22,.72,.2,1) both}
-@keyframes content-arrive{0%{opacity:.2;transform:scale(.99)}45%{opacity:.82}100%{opacity:1;transform:scale(1)}}
+.view-panel.is-active{display:block;animation:content-arrive .42s cubic-bezier(.2,.75,.25,1) both}
+@keyframes content-arrive{0%{opacity:.25;transform:scale(.985)}100%{opacity:1;transform:scale(1)}}
 .filter-defs{position:absolute;pointer-events:none}
 .liquid-wipe{
-  position:fixed;z-index:9999;pointer-events:none;inset:0;opacity:0;
-  transform:scale(.02);transform-origin:50% 50%;
+  position:fixed;z-index:9999;pointer-events:none;inset:-3%;opacity:0;
   clip-path:circle(0% at 50% 50%);
   background:
-    radial-gradient(ellipse at 50% 48%,rgba(4,94,202,.16) 0%,rgba(3,104,213,.13) 42%,rgba(5,120,220,.08) 68%,rgba(255,255,255,.015) 100%);
-  mix-blend-mode:normal;will-change:clip-path,opacity,filter;
-  filter:url(#liquid-distortion) saturate(1.12);
+    radial-gradient(ellipse at 50% 50%,rgba(13,105,191,.18) 0%,rgba(34,160,225,.12) 43%,rgba(220,250,255,.10) 64%,rgba(255,255,255,.035) 100%);
+  mix-blend-mode:screen;will-change:clip-path,opacity,filter;
+  filter:url(#liquid-distortion) saturate(1.15);
 }
 .liquid-wipe::before,.liquid-wipe::after{content:"";position:absolute;inset:0;pointer-events:none;clip-path:inherit}
-/* Broad, clear refraction band: bright white edge plus a restrained cyan reflection. */
 .liquid-wipe::before{
   background:
-    radial-gradient(ellipse at 50% 50%,transparent 0 47%,rgba(255,255,255,.015) 48%,rgba(255,255,255,.1) 49%,rgba(255,255,255,.76) 49.35%,rgba(190,247,255,.9) 49.65%,rgba(42,180,255,.5) 49.9%,rgba(255,255,255,.24) 50.15%,transparent 50.7%);
-  opacity:.92;
+    radial-gradient(ellipse at 50% 50%,transparent 0 47.9%,rgba(255,255,255,.06) 48.3%,rgba(255,255,255,.58) 48.8%,rgba(174,240,255,.9) 49.15%,rgba(255,255,255,.92) 49.35%,rgba(67,188,255,.56) 49.6%,rgba(255,255,255,.22) 49.9%,transparent 50.45%);
+  opacity:.9;
 }
 .liquid-wipe::after{
   background:
-    radial-gradient(ellipse at 50% 50%,transparent 0 48.8%,rgba(255,255,255,.22) 49%,transparent 49.25%),
-    radial-gradient(ellipse at 36% 22%,rgba(255,255,255,.17),transparent 20%),
-    radial-gradient(ellipse at 68% 77%,rgba(99,224,255,.13),transparent 24%);
-  box-shadow:inset 0 0 30px rgba(255,255,255,.055);
-  opacity:.8;
+    radial-gradient(ellipse at 38% 30%,rgba(255,255,255,.16),transparent 17%),
+    radial-gradient(ellipse at 68% 72%,rgba(116,222,255,.18),transparent 20%),
+    radial-gradient(ellipse at 50% 50%,transparent 0 45%,rgba(255,255,255,.08) 47%,transparent 48.5%);
+  opacity:.72;
 }
-.liquid-wipe.is-spreading{opacity:1;animation:water-spread 1.08s cubic-bezier(.2,.72,.18,1) both}
-.liquid-wipe.is-clearing{opacity:1;animation:water-clear .36s cubic-bezier(.3,.7,.2,1) both}
+.liquid-wipe.is-spreading{opacity:1;animation:water-spread .72s cubic-bezier(.45,.02,.25,1) both}
+.liquid-wipe.is-clearing{opacity:1;animation:water-clear .52s cubic-bezier(.3,.7,.2,1) both}
 @keyframes water-spread{
   0%{opacity:0;clip-path:circle(0% at 50% 50%);filter:url(#liquid-distortion) saturate(1)}
-  10%{opacity:1;clip-path:circle(9% at 50% 50%);filter:url(#liquid-distortion) saturate(1.05)}
-  28%{clip-path:circle(32% at 50% 50%)}
-  48%{clip-path:circle(66% at 50% 50%)}
-  72%{clip-path:circle(105% at 50% 50%)}
-  88%{clip-path:circle(145% at 50% 50%)}
-  100%{opacity:1;clip-path:circle(160% at 50% 50%);filter:url(#liquid-distortion) saturate(1.12)}
+  12%{opacity:1;clip-path:circle(12% at 50% 50%)}
+  34%{clip-path:circle(44% at 50% 50%)}
+  62%{clip-path:circle(88% at 50% 50%)}
+  82%{clip-path:circle(125% at 50% 50%)}
+  100%{opacity:1;clip-path:circle(155% at 50% 50%);filter:url(#liquid-distortion) saturate(1.15)}
 }
 @keyframes water-clear{
-  0%{opacity:1;clip-path:circle(160% at 50% 50%)}
+  0%{opacity:1;clip-path:circle(155% at 50% 50%)}
   100%{opacity:0;clip-path:circle(165% at 50% 50%)}
 }
 .nav-pills a,.contact-pill,.round-arrow,.footer a{cursor:pointer}

@@ -32,23 +32,23 @@ function showView(nextView, updateHistory = true, sourceElement = null) {
   }
 
   switchingView = true;
-  // La expansión nace siempre del centro del contenedor visible, no del botón pulsado.
-  liquidWipe.style.setProperty('--origin-x', '50vw');
-  liquidWipe.style.setProperty('--origin-y', '50vh');
+  // La transición siempre nace del centro de la pantalla.
+  liquidWipe.style.setProperty('--origin-x', '50%');
+  liquidWipe.style.setProperty('--origin-y', '50%');
   liquidWipe.classList.remove('is-spreading', 'is-clearing');
-  // Reinicia la animación para que cada clic produzca una expansión nueva.
   void liquidWipe.offsetWidth;
   liquidWipe.classList.add('is-spreading');
 
+  // El contenido cambia cuando la onda ha cruzado el centro y ya cubre la mayor parte de la vista.
   window.setTimeout(() => {
-    setActiveView(nextView); // La nueva vista aparece cuando la membrana líquida cubre la pantalla.
+    setActiveView(nextView);
     liquidWipe.classList.remove('is-spreading');
     liquidWipe.classList.add('is-clearing');
     window.setTimeout(() => {
       liquidWipe.classList.remove('is-clearing');
       switchingView = false;
-    }, 360);
-  }, 1080);
+    }, 520);
+  }, 620);
 }
 
 viewLinks.forEach(link => link.addEventListener('click', event => {
