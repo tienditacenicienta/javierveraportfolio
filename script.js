@@ -1,37 +1,40 @@
-// CONFIGURA AQUÍ TU NÚMERO REAL ANTES DE PUBLICAR.
-// Formato internacional sin +, espacios ni guiones. Ejemplo Perú: 519XXXXXXXX
-const CONFIG = {
-  whatsapp: "51999999999"
-};
+// Cambia este número por tu WhatsApp en formato internacional, sin + ni espacios.
+const WHATSAPP_NUMBER = '51999999999';
 
-document.getElementById("year").textContent = new Date().getFullYear();
-
-const defaultMessage = "Hola Javier, vi tu portafolio y quisiera conversar sobre un proyecto.";
-const whatsappUrl = (message) => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
-
-document.getElementById("whatsapp-link").href = whatsappUrl(defaultMessage);
-
-const projectForm = document.getElementById("project-form");
-projectForm.addEventListener("submit", (event) => {
+const form = document.querySelector('#brief-form');
+form?.addEventListener('submit', (event) => {
   event.preventDefault();
-  const message = document.getElementById("project-message").value.trim();
-  if (!message) return;
-  const fullMessage = `Hola Javier, vi tu portafolio y quiero comentarte un proyecto:\n\n${message}`;
-  window.open(whatsappUrl(fullMessage), "_blank", "noopener,noreferrer");
+  const data = new FormData(form);
+  const nombre = (data.get('nombre') || '').toString().trim();
+  const marca = (data.get('marca') || '').toString().trim();
+  const brief = (data.get('brief') || '').toString().trim();
+  const presupuesto = (data.get('presupuesto') || 'Por definir').toString();
+  if (!brief) return;
+  const message = [
+    'Hola, Javier. Me gustaría conversar sobre un proyecto.',
+    nombre && `Nombre: ${nombre}`,
+    marca && `Empresa / marca: ${marca}`,
+    `Proyecto: ${brief}`,
+    `Presupuesto estimado: ${presupuesto}`
+  ].filter(Boolean).join('\n');
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank', 'noopener,noreferrer');
 });
 
-// Lightbox: abrir las piezas en tamaño ampliado.
-const dialog = document.getElementById("lightbox");
-const preview = dialog.querySelector("img");
-document.querySelectorAll("[data-project]").forEach((card) => {
-  card.addEventListener("click", (event) => {
-    event.preventDefault();
-    const img = card.querySelector("img");
-    preview.src = img.currentSrc || img.src;
-    preview.alt = img.alt;
-    if (dialog.showModal) dialog.showModal();
+// Las piezas flotan sutilmente con el cursor en escritorio; se desactiva en táctil.
+const cards = document.querySelectorAll('.project-card');
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  document.querySelector('.project-stage')?.addEventListener('pointermove', (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - .5;
+    const y = (event.clientY - rect.top) / rect.height - .5;
+    cards.forEach((card, index) => {
+      const depth = (index % 4 + 1) * 3;
+      card.style.setProperty('--move-x', `${x * depth}px`);
+      card.style.setProperty('--move-y', `${y * depth}px`);
+    });
   });
-});
-dialog.querySelector(".lightbox-close").addEventListener("click", () => dialog.close());
-dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
-dialog.addEventListener("close", () => { preview.src = ""; });
+  document.querySelector('.project-stage')?.addEventListener('pointerleave', () => {
+    cards.forEach(card => { card.style.removeProperty('--move-x'); card.style.removeProperty('--move-y'); });
+  });
+}
