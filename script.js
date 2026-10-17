@@ -1,4 +1,4 @@
-// Navegación por vistas con una expansión líquida que revela la siguiente pantalla.
+// Navegación por vistas con una membrana líquida iridiscente y distorsión orgánica.
 const viewLinks = document.querySelectorAll('[data-view-link]');
 const viewPanels = document.querySelectorAll('[data-view]');
 const liquidWipe = document.querySelector('#liquid-wipe');
@@ -43,14 +43,14 @@ function showView(nextView, updateHistory = true, sourceElement = null) {
   liquidWipe.classList.add('is-spreading');
 
   window.setTimeout(() => {
-    setActiveView(nextView); // El cambio sucede bajo la capa líquida, ya expandida.
+    setActiveView(nextView); // La nueva vista aparece cuando la membrana líquida cubre la pantalla.
     liquidWipe.classList.remove('is-spreading');
     liquidWipe.classList.add('is-clearing');
     window.setTimeout(() => {
       liquidWipe.classList.remove('is-clearing');
       switchingView = false;
-    }, 260);
-  }, 590);
+    }, 480);
+  }, 900);
 }
 
 viewLinks.forEach(link => link.addEventListener('click', event => {
