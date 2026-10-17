@@ -1,20 +1,19 @@
-# Javier Vera — portafolio web (boceto de código)
+# Javier Vera — Portafolio Liquid Glass
 
-Boceto responsive en HTML, CSS y JavaScript, sin frameworks ni proceso de compilación. Dirección visual: azul eléctrico, tipografía editorial, collage de proyectos y paneles Liquid Glass con revelado central inspirado en agua transparente, reflejos limpios y distorsión sutil.
+Boceto funcional en HTML, CSS y JavaScript. Navegación entre vistas con un shader WebGL procedural que dibuja una membrana de gel transparente, asimétrica y brillante, expandiéndose desde el centro de la pantalla.
 
 ## Probar localmente
-Abre `index.html` en un navegador. Para una prueba más fiel, sirve la carpeta con cualquier servidor estático.
+
+Abre `index.html` en un navegador moderno. WebGL debe estar habilitado. Para evitar restricciones de archivos locales, también puedes ejecutar un servidor estático desde esta carpeta (`python3 -m http.server 8000`) y visitar `http://localhost:8000`.
+
+## Publicar
+
+Sustituye los archivos de la carpeta en tu repositorio de GitHub y realiza un commit. Cloudflare Pages desplegará el cambio si está conectado al repositorio.
 
 ## Antes de publicar
-1. **Reemplaza las 8 imágenes SVG de `assets/projects/` por imágenes de tus proyectos reales.** Conserva los nombres `work-01.svg`…`work-08.svg` o actualiza las rutas en `index.html`. Las piezas actuales son placeholders visuales, no trabajos reales.
-2. Edita el nombre de cada proyecto y su disciplina en los elementos `.project-index` de `index.html`.
-3. En `script.js`, reemplaza `WHATSAPP_NUMBER = '51999999999'` por tu número en formato internacional, sin `+`, espacios ni guiones.
-4. Revisa las marcas del carrusel antes de publicar; elimina o sustituye las que no correspondan a tu experiencia real.
-5. El formulario abre WhatsApp con el brief preparado; no almacena datos ni envía mensajes sin que la persona confirme en WhatsApp.
 
-## Publicación
-Compatible con Cloudflare Pages como sitio estático. Sube el contenido de esta carpeta al repositorio y configura la raíz del proyecto en `/` sin comando de build.
+- Cambia `WHATSAPP_NUMBER` en `script.js` por tu número internacional, sin `+` ni espacios.
+- Sustituye los SVG de ejemplo en `assets/projects/` por imágenes reales de tus proyectos.
+- Añade tu CV en `assets/Javier-Vera-CV.pdf` o elimina el enlace correspondiente.
 
-
-### Transición Liquid Glass WebGL
-La navegación usa un canvas WebGL con un shader procedural para dibujar una membrana orgánica de baja opacidad y reflejos especulares. Si el navegador no soporta WebGL, la navegación cambia sin la animación. El shader simula refracción visual; no captura ni deforma literalmente los píxeles DOM que hay debajo.
+La transición es una representación visual procedural con WebGL, no una simulación física exacta ni una refracción real del DOM.
