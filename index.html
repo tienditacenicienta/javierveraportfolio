@@ -16,29 +16,32 @@
   <header class="topbar glass">
     <a class="wordmark" href="#inicio" aria-label="Javier Vera, inicio">JV<span>®</span><small>DISEÑO GRÁFICO<br> DIRECCIÓN DE ARTE</small></a>
     <nav class="nav-pills" aria-label="Navegación principal">
-      <a class="active" href="#inicio">Inicio</a><a href="#proyectos">Proyectos <span>08</span></a><a href="#enfoque">Enfoque</a>
+      <a class="active" href="#inicio" data-view-link="inicio" aria-current="page">Inicio</a><a href="#proyectos" data-view-link="proyectos">Proyectos <span>08</span></a><a href="#enfoque" data-view-link="enfoque">Enfoque</a>
     </nav>
-    <a class="contact-pill glass" href="#contacto">Hablemos <span class="arrow">↗</span></a>
+    <a class="contact-pill glass" href="#contacto" data-view-link="contacto">Hablemos <span class="arrow">↗</span></a>
   </header>
 
-  <main>
-    <section class="hero" id="inicio">
+  <main class="view-container" id="view-container">
+    <div class="view-panel is-active" data-view="inicio" id="inicio">
+    <section class="hero">
       <div class="hero-meta mono"><span>PORTAFOLIO INDEPENDIENTE / 2026</span><span>LIMA, PERÚ · DISPONIBLE PARA PROYECTOS</span></div>
       <div class="hero-title-wrap">
         <h1><span>IDEAS QUE</span><span class="title-second">MUEVEN <i>MARCAS.</i></span></h1>
         <div class="hero-glass glass">
           <span class="mini-label mono">DISEÑO / DIRECCIÓN DE ARTE</span>
           <p>Convierto ideas en<br><b>comunicación visual</b><br>que se hace notar.</p>
-          <a href="#proyectos" class="round-arrow" aria-label="Ver proyectos">↘</a>
+          <a href="#proyectos" data-view-link="proyectos" class="round-arrow" aria-label="Ver proyectos">↘</a>
           <div class="glass-foot mono">CONCEPTO&nbsp; → &nbsp;DISEÑO&nbsp; → &nbsp;RESULTADO</div>
         </div>
       </div>
       <p class="hero-intro">Diseño gráfico y dirección de arte para marcas que necesitan destacar, comunicar y perdurar.</p>
-      <div class="hero-bottom"><span class="availability"><i></i> ABIERTO A NUEVOS PROYECTOS</span><span class="scroll-note mono">SCROLL PARA EXPLORAR ↓</span></div>
+      <div class="hero-bottom"><span class="availability"><i></i> ABIERTO A NUEVOS PROYECTOS</span><span class="scroll-note mono">SELECCIONA UNA VISTA ↗</span></div>
       <div class="orbit-line" aria-hidden="true"></div>
     </section>
+    </div>
 
-    <section class="project-section" id="proyectos">
+    <div class="view-panel" data-view="proyectos" id="proyectos">
+    <section class="project-section">
       <div class="section-head"><div><span class="eyebrow mono">01 / SELECCIÓN VISUAL</span><h2>TRABAJO<br><em>EN MOVIMIENTO.</em></h2></div><p>Una selección de proyectos, exploraciones y sistemas visuales.<br><span class="mono">IMÁGENES TEMPORALES · REEMPLAZAR POR TRABAJO REAL</span></p></div>
       <div class="project-stage">
         <a class="project-card card-one" href="#contacto" data-project="01"><img src="assets/projects/work-01.svg" alt="Boceto visual temporal de proyecto 01"><span class="project-index mono">01 / BRANDING</span><span class="project-open">↗</span></a>
@@ -58,16 +61,20 @@
       <div class="brand-marquee"><div class="brand-track"><span>PORTA</span><span>MATERNELLE</span><span>GRAVITY</span><span>CIRCUIT MEDIA</span><span>OEA EDUCACIÓN</span><span>SISTEMAV</span><span>YAQUA</span><span>PORTA</span><span>MATERNELLE</span><span>GRAVITY</span><span>CIRCUIT MEDIA</span><span>OEA EDUCACIÓN</span><span>SISTEMAV</span><span>YAQUA</span></div></div>
       <p class="brands-note">Experiencia construida colaborando con equipos y marcas de distintas industrias.</p>
     </section>
+    </div>
 
-    <section class="approach" id="enfoque">
+    <div class="view-panel" data-view="enfoque" id="enfoque">
+    <section class="approach">
       <div class="approach-label mono">03 / CÓMO PUEDO AYUDAR</div>
       <div class="approach-main"><h2>NO ES SOLO<br>QUE SE VEA <span>BIEN.</span></h2><p>Es encontrar la forma visual correcta para una idea, una marca o un objetivo. Desde el concepto hasta la ejecución, cada proyecto se construye según lo que realmente necesita.</p>
         <div class="service-cloud"><span class="glass">Diseño gráfico</span><span class="glass">Dirección de arte</span><span class="glass">Branding</span><span class="glass">Campañas</span><span class="glass">Contenido digital</span><span class="glass">Sistemas visuales</span></div>
       </div>
       <div class="approach-foot mono"><span>01 — ESCUCHAR</span><span>02 — PROPONER</span><span>03 — HACERLO REAL</span></div>
     </section>
+    </div>
 
-    <section class="contact-section" id="contacto">
+    <div class="view-panel" data-view="contacto" id="contacto">
+    <section class="contact-section">
       <div class="contact-orb" aria-hidden="true"></div>
       <span class="eyebrow mono">04 / CONTACTO</span>
       <h2>¿QUÉ IDEA<br>TIENES <em>EN MENTE?</em></h2>
@@ -82,8 +89,9 @@
         </form>
       </div>
     </section>
+    </div>
   </main>
-  <footer class="footer"><a href="#inicio" class="footer-mark">JV®</a><span class="mono">DISEÑO CON INTENCIÓN. IDEAS EN MOVIMIENTO.</span><a href="#contacto">Hablemos ↗</a><span class="mono">© 2026 JAVIER VERA</span></footer>
+  <footer class="footer"><a href="#inicio" data-view-link="inicio" class="footer-mark">JV®</a><span class="mono">DISEÑO CON INTENCIÓN. IDEAS EN MOVIMIENTO.</span><a href="#contacto" data-view-link="contacto">Hablemos ↗</a><span class="mono">© 2026 JAVIER VERA</span></footer>
   <script src="script.js"></script>
 </body>
 </html>
