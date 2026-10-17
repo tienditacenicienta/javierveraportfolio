@@ -1,21 +1,19 @@
-# Javier Vera — portafolio
+# JV® 2050 — Javier Vera
 
-Web de dos secciones principales más contacto, basada en la línea del CV: azul eléctrico, blanco, negro, tipografía condensada, titulares directos y el mensaje «¿Necesitas diseño? Resuelto.».
+Portafolio conceptual con estética de interfaz creativa futurista, manteniendo el branding azul eléctrico, blanco y negro, tipografía condensada y el mensaje «¿Necesitas diseño? Resuelto.».
 
-## Interactividad
-- Filtros por branding, campañas y digital.
-- Cada proyecto abre un panel con su descripción.
-- Indicador de avance al desplazarse.
-- Animaciones sutiles en tarjetas y botones.
-- Diseño adaptable a móvil y escritorio.
+## Funciones
+- Portada con HUD, retícula, órbitas y línea SVG animada.
+- Movimiento parallax ligado al cursor y coordenadas en tiempo real.
+- Portafolio filtrable por branding, campañas y digital.
+- Reordenamiento aleatorio de proyectos.
+- Modal con descripción y proceso de cada caso.
+- Matriz de marcas, diseño responsive y soporte para movimiento reducido.
 
 ## Antes de publicar
-1. Cambia `TU_CORREO@ejemplo.com` por tu correo profesional en `index.html`.
-2. Las piezas de portafolio son composiciones tipográficas demostrativas, no artes originales. Sustitúyelas por imágenes de proyectos reales antes de presentar la web como portafolio final.
-3. Revisa nombres de marcas y autorizaciones de uso.
+- Sustituye `TU_CORREO@ejemplo.com` en `index.html`.
+- Los casos son composiciones visuales conceptuales, no artes finales originales. Sustitúyelos por tus proyectos reales.
+- Verifica las marcas y el permiso para mostrarlas.
 
 ## GitHub + Cloudflare Pages
-1. Sube `index.html`, `styles.css`, `script.js` y `README.md` a la raíz de un repositorio GitHub.
-2. En Cloudflare, abre **Workers & Pages → Create → Pages → Connect to Git**.
-3. Selecciona el repositorio. Framework preset: **None**; build command vacío; output directory `/` o `.` según la interfaz.
-4. Despliega. No requiere dependencias ni compilación.
+Sube `index.html`, `styles.css`, `script.js` y `README.md` a la raíz de tu repo. En Cloudflare Pages conecta el repo; preset **None**, build command vacío y output directory `/` o `.` según la interfaz. No necesita compilación ni dependencias.
