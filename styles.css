@@ -3,14 +3,18 @@
 .project-card{translate:var(--move-x,0) var(--move-y,0)}
 
 
-/* Navegación por vistas: cambia el contenido sin scroll de ancla */
+/* Navegación por vistas: el contenido cambia detrás de una expansión líquida */
 html{scroll-behavior:auto}
 .view-container{position:relative;min-height:calc(100svh - 96px);isolation:isolate}
 .view-panel{display:none;min-height:calc(100svh - 96px);width:100%;transform-origin:50% 40%;backface-visibility:hidden}
-.view-panel.is-active{display:block;animation:liquid-reveal .62s cubic-bezier(.2,.75,.2,1) both}
-.view-panel.is-leaving{display:block;position:absolute;inset:0;z-index:5;width:100%;pointer-events:none;animation:liquid-dissolve .32s ease-in both}
-@keyframes liquid-reveal{0%{opacity:0;filter:blur(18px);transform:translateY(12px) scale(.985)}45%{opacity:.7;filter:blur(5px)}100%{opacity:1;filter:blur(0);transform:translateY(0) scale(1)}}
-@keyframes liquid-dissolve{0%{opacity:1;filter:blur(0);transform:translateY(0) scale(1)}100%{opacity:0;filter:blur(16px);transform:translateY(-8px) scale(1.012)}}
+.view-panel.is-active{display:block;animation:view-settle .42s cubic-bezier(.2,.75,.2,1) both}
+@keyframes view-settle{0%{opacity:.82;transform:scale(.992)}100%{opacity:1;transform:scale(1)}}
+.filter-defs{position:absolute;pointer-events:none}
+.liquid-wipe{position:fixed;z-index:9999;inset:0;pointer-events:none;opacity:0;clip-path:circle(0 at var(--origin-x,50%) var(--origin-y,50%));background:radial-gradient(ellipse at 35% 30%,rgba(255,255,255,.72),rgba(108,220,255,.42) 20%,rgba(28,136,255,.62) 48%,rgba(5,48,136,.88) 75%,rgba(255,255,255,.55));border:1px solid rgba(255,255,255,.72);box-shadow:inset 0 0 70px rgba(255,255,255,.38),0 0 45px rgba(77,203,255,.28);filter:url(#liquid-distortion);will-change:clip-path,opacity}
+.liquid-wipe.is-spreading{opacity:1;animation:liquid-spread .62s cubic-bezier(.18,.72,.2,1) both}
+.liquid-wipe.is-clearing{opacity:1;clip-path:circle(150vmax at var(--origin-x,50%) var(--origin-y,50%));animation:liquid-clear .26s ease-out both}
+@keyframes liquid-spread{0%{clip-path:circle(0 at var(--origin-x) var(--origin-y));opacity:.8}58%{opacity:1}100%{clip-path:circle(150vmax at var(--origin-x) var(--origin-y));opacity:1}}
+@keyframes liquid-clear{0%{opacity:1}100%{opacity:0}}
 .nav-pills a,.contact-pill,.round-arrow,.footer a{cursor:pointer}
 .nav-pills a{transition:background .25s ease,box-shadow .25s ease,color .25s ease}
 .nav-pills a:not(.active):hover{background:rgba(255,255,255,.09)}
@@ -19,4 +23,4 @@ html{scroll-behavior:auto}
 .view-panel .approach{min-height:calc(100svh - 100px);display:flex;flex-direction:column;justify-content:center}
 .view-panel .contact-section{min-height:calc(100svh - 150px)}
 @media(max-width:760px){.view-container,.view-panel{min-height:calc(100svh - 80px)}.view-panel .hero{min-height:calc(100svh - 80px)}.view-panel .project-section{padding-top:42px}.view-panel .approach{min-height:calc(100svh - 80px)}}
-@media(prefers-reduced-motion:reduce){.view-panel.is-active,.view-panel.is-leaving{animation:none}.view-panel.is-active{opacity:1;filter:none;transform:none}}
+@media(prefers-reduced-motion:reduce){.view-panel.is-active{animation:none}.liquid-wipe{display:none}}

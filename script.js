@@ -1,18 +1,18 @@
-// Navegación entre vistas con transición Liquid Glass; no usa scroll a anclas.
+// Navegación por vistas con una expansión líquida que revela la siguiente pantalla.
 const viewLinks = document.querySelectorAll('[data-view-link]');
 const viewPanels = document.querySelectorAll('[data-view]');
+const liquidWipe = document.querySelector('#liquid-wipe');
 let currentView = document.querySelector('.view-panel.is-active')?.dataset.view || 'inicio';
 let switchingView = false;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-function showView(nextView, updateHistory = true) {
-  if (!nextView || nextView === currentView || switchingView) return;
-  const nextPanel = document.querySelector(`[data-view="${nextView}"]`);
-  const currentPanel = document.querySelector(`[data-view="${currentView}"]`);
-  if (!nextPanel || !currentPanel) return;
-  switchingView = true;
-  currentPanel.classList.remove('is-active');
-  currentPanel.classList.add('is-leaving');
-  nextPanel.classList.add('is-active');
+function setActiveView(nextView) {
+  viewPanels.forEach(panel => {
+    const active = panel.dataset.view === nextView;
+    panel.classList.toggle('is-active', active);
+    panel.classList.remove('is-leaving');
+    panel.setAttribute('aria-hidden', active ? 'false' : 'true');
+  });
   viewLinks.forEach(link => {
     const active = link.dataset.viewLink === nextView;
     link.classList.toggle('active', active);
@@ -20,33 +20,51 @@ function showView(nextView, updateHistory = true) {
     else link.removeAttribute('aria-current');
   });
   currentView = nextView;
+}
+
+function showView(nextView, updateHistory = true, sourceElement = null) {
+  if (!nextView || nextView === currentView || switchingView) return;
+  if (!document.querySelector(`[data-view="${nextView}"]`)) return;
   if (updateHistory) history.replaceState({ view: nextView }, '', `#${nextView}`);
+  if (reducedMotion.matches || !liquidWipe) {
+    setActiveView(nextView);
+    return;
+  }
+
+  switchingView = true;
+  const rect = sourceElement?.getBoundingClientRect();
+  const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+  const y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
+  liquidWipe.style.setProperty('--origin-x', `${x}px`);
+  liquidWipe.style.setProperty('--origin-y', `${y}px`);
+  liquidWipe.classList.remove('is-spreading', 'is-clearing');
+  // Reinicia la animación para que cada clic produzca una expansión nueva.
+  void liquidWipe.offsetWidth;
+  liquidWipe.classList.add('is-spreading');
+
   window.setTimeout(() => {
-    currentPanel.classList.remove('is-leaving');
-    switchingView = false;
-  }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 360);
+    setActiveView(nextView); // El cambio sucede bajo la capa líquida, ya expandida.
+    liquidWipe.classList.remove('is-spreading');
+    liquidWipe.classList.add('is-clearing');
+    window.setTimeout(() => {
+      liquidWipe.classList.remove('is-clearing');
+      switchingView = false;
+    }, 260);
+  }, 590);
 }
 
 viewLinks.forEach(link => link.addEventListener('click', event => {
   event.preventDefault();
-  showView(link.dataset.viewLink);
+  showView(link.dataset.viewLink, true, link);
 }));
 
-// Admite enlaces directos a una vista y los botones atrás/adelante del navegador.
 function syncViewFromHash() {
   const requested = window.location.hash.replace('#', '') || 'inicio';
-  showView(requested, false);
+  if (requested !== currentView) showView(requested, false);
 }
 window.addEventListener('hashchange', syncViewFromHash);
-if (['inicio', 'proyectos', 'enfoque', 'contacto'].includes(location.hash.slice(1))) {
-  const requested = location.hash.slice(1);
-  if (requested !== 'inicio') {
-    document.querySelectorAll('.view-panel').forEach(panel => panel.classList.remove('is-active'));
-    document.querySelector(`[data-view="${requested}"]`)?.classList.add('is-active');
-    currentView = requested;
-    viewLinks.forEach(link => link.classList.toggle('active', link.dataset.viewLink === requested));
-  }
-}
+const initialView = location.hash.slice(1);
+if (['inicio', 'proyectos', 'enfoque', 'contacto'].includes(initialView)) setActiveView(initialView);
 
 // Cambia este número por tu WhatsApp en formato internacional, sin + ni espacios.
 const WHATSAPP_NUMBER = '51999999999';
