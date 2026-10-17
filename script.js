@@ -35,38 +35,42 @@ function createLiquidShader(canvas) {
       vec2 p=(uv-.5)*vec2(u_resolution.x/u_resolution.y,1.);
       float angle=atan(p.y,p.x);
       float radius=length(p);
-      // A broad, asymmetric, continuously evolving membrane rather than a circular ring.
-      float slow=sin(angle*2.0-u_time*.48)*.095 + sin(angle*3.0+u_time*.32)*.052;
-      float folds=sin(angle*5.0-u_time*.63)*.022 + sin(angle*7.0+u_time*.42)*.012;
-      float grain=noise(vec2(angle*2.8+u_time*.18, angle*1.6-u_time*.14))-.5;
-      float organic=1.0+slow+folds+grain*.045;
-      float maxRadius=length(vec2(u_resolution.x/u_resolution.y,1.))*.68;
+      float t=u_time;
+      // An asymmetric liquid sheet with slow, broad folds rather than a circular outline.
+      float lobes=sin(angle*2.0-t*.30)*.13 + sin(angle*3.0+t*.22)*.075;
+      float folds=sin(angle*5.0-t*.38)*.035 + sin(angle*7.0+t*.27)*.018;
+      float travelling=sin(angle*1.7-t*.52)*.035;
+      float organic=1.0+lobes+folds+travelling;
+      float maxRadius=length(vec2(u_resolution.x/u_resolution.y,1.))*.72;
       float front=u_progress*maxRadius*organic;
-      float signedEdge=front-radius;
-      float edgeDist=abs(signedEdge);
-      float edgeWidth=.0065 + .0035*(.5+.5*sin(angle*3.0+u_time*.55));
-      float rim=1.0-smoothstep(edgeWidth,edgeWidth+.012,edgeDist);
-      float inner=1.0-smoothstep(.012,.075,signedEdge);
-      float outer=1.0-smoothstep(.004,.035,-signedEdge);
-      float flow=noise(vec2(uv.x*4.5+u_time*.13,uv.y*5.8-u_time*.18));
-      float streak1=pow(max(0.,1.-abs(sin(angle*2.1+u_time*.27+flow*.8))),20.0);
-      float streak2=pow(max(0.,1.-abs(sin(angle*4.3-u_time*.21+flow*.4))),31.0);
-      float crest=pow(max(0.,1.-abs(sin(angle*1.25-u_time*.19))),13.0);
-      float highlight=clamp(rim*(.23+streak1*.64+streak2*.35+crest*.22),0.,1.);
-      float chromatic=clamp(rim*(streak1*.25+streak2*.12),0.,.45);
-      vec3 pearl=mix(vec3(.60,.89,1.0),vec3(1.0,.98,.91),.5+.5*sin(angle*2.0+u_time*.22));
-      vec3 cyan=vec3(.24,.82,1.0);
-      vec3 violet=vec3(.58,.57,1.0);
-      // Almost invisible body; highlights define a clear gel-like edge, not a frosted ring.
-      float body=inner*(.006+flow*.009);
-      float innerCaustic=inner*pow(max(0.,sin(angle*3.0+u_time*.25+flow)),12.0)*.055;
-      vec3 color=pearl*highlight + cyan*(rim*.12+chromatic*.55) + violet*(chromatic*.18) + vec3(.72,.92,1.)*(body+innerCaustic);
-      float alpha=clamp(highlight*.68 + rim*.12 + body + innerCaustic,0.,.84);
-      float intro=smoothstep(0.,.045,u_progress);
-      float outro=1.0-smoothstep(.94,1.0,u_progress);
-      // Keep the wave organic throughout its life; fade only the last few frames.
-      float fade=intro*outro;
-      gl_FragColor=vec4(color,alpha*fade);
+      float d=front-radius;
+      float edgeBand=exp(-pow(d/.075,2.0));
+      float innerMask=smoothstep(-.018,.035,d);
+      float outerFade=1.0-smoothstep(-.045,.005,d);
+      float edgeFade=smoothstep(-.055,-.012,d)*(1.0-smoothstep(.025,.085,d));
+      float flow1=noise(vec2(uv.x*3.2+t*.08,uv.y*4.4-t*.12));
+      float flow2=noise(vec2(uv.x*7.0-t*.12,uv.y*5.2+t*.08));
+      float waves=sin(angle*2.4+t*.35+flow1*1.8);
+      // Broad body gives the membrane visible volume; layered edge lights sell clear gel.
+      float bodyShade=innerMask*(.12 + .10*flow1 + .055*flow2 + .045*max(0.0,waves));
+      float rimSoft=edgeBand*(.12+.12*flow2);
+      float rimSharp=exp(-pow((d-(.012+.009*sin(angle*2.0+t*.3)))/.009,2.0));
+      float innerReflection=exp(-pow((d-.045)/.022,2.0))*(.25+.4*max(0.0,waves));
+      float underside=exp(-pow((d+.025)/.018,2.0))*.45;
+      float streak=pow(max(0.0,1.0-abs(sin(angle*2.3-t*.23+flow1))),18.0);
+      float streak2=pow(max(0.0,1.0-abs(sin(angle*4.7+t*.19+flow2))),26.0);
+      float glint=clamp(streak*.8+streak2*.55,0.0,1.0);
+      vec3 cool=vec3(.22,.78,1.0);
+      vec3 pearl=mix(vec3(.72,.91,1.0),vec3(1.0,.97,.88),.5+.5*sin(angle*1.6-t*.16));
+      vec3 spectral=mix(vec3(.12,.72,1.0),vec3(.70,.42,1.0),.5+.5*sin(angle*3.0+t*.22));
+      vec3 bodyColor=vec3(.48,.78,.98)*bodyShade;
+      vec3 color=bodyColor + cool*(rimSoft*.7+underside*.35) + pearl*(rimSharp*.95+innerReflection*.42) + spectral*(rimSharp*.22) + vec3(1.0,.98,.93)*glint*edgeFade*.58;
+      float alpha=bodyShade*.48 + rimSoft*.22 + rimSharp*.70 + innerReflection*.22 + underside*.10 + glint*edgeFade*.22;
+      // Fade the entire gel sheet only at the very beginning/end of the transition.
+      float intro=smoothstep(0.0,.035,u_progress);
+      float outro=1.0-smoothstep(.965,1.0,u_progress);
+      alpha=clamp(alpha,0.0,.76)*intro*outro;
+      gl_FragColor=vec4(color*intro*outro,alpha);
     }`;
   function compile(type, source){ const sh=gl.createShader(type); gl.shaderSource(sh,source); gl.compileShader(sh); if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS)){ console.warn(gl.getShaderInfoLog(sh)); return null;} return sh; }
   const vs=compile(gl.VERTEX_SHADER,vertexSource), fs=compile(gl.FRAGMENT_SHADER,fragmentSource); if(!vs||!fs) return null;
