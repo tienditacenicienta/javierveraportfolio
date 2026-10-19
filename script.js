@@ -7,11 +7,11 @@ let activeView = 'inicio';
 function showView(name, scroll = true) {
   const target = document.getElementById(`view-${name}`);
   if (!target) return;
-  views.forEach(view => view.classList.toggle('active', view === target));
+  views.forEach(view => view.classList.add('active'));
   activeView = name;
   menu.classList.remove('open'); menu.setAttribute('aria-hidden','true');
   menuToggle.setAttribute('aria-expanded','false'); menuToggle.querySelector('span').textContent = '＋';
-  if (scroll) window.scrollTo({top:0,behavior:'smooth'});
+  if (scroll) target.scrollIntoView({behavior:'smooth', block:'start'});
   history.replaceState(null,'', name === 'inicio' ? location.pathname : `#${name}`);
 }
 menuToggle.addEventListener('click', () => {
