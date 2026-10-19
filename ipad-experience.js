@@ -21,10 +21,18 @@
     {name:'MAKE ROOM FOR IDEAS',category:'DISEÑO EDITORIAL / CONCEPTO'}
   ];
   let target=0, current=0, running=false, focusSide=null;
+  let frozenProgress = 0;
   const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
   const lerp=(a,b,t)=>a+(b-a)*t;
 
   function readScroll(){
+    // En modo reel seleccionado, el scroll vertical deja de controlar el carrusel
+    // horizontal. La escena se conserva fija brevemente y luego permite salir
+    // hacia la siguiente sección sin tener que recorrer los cinco proyectos.
+    if (focusSide) {
+      target = frozenProgress;
+      return;
+    }
     const rect=story.getBoundingClientRect();
     const range=Math.max(1,story.offsetHeight-window.innerHeight);
     target=clamp(-rect.top/range,0,1);
@@ -50,7 +58,19 @@
     else {current=target;running=false;if(Math.abs(target-current)>.0006)readScroll();}
   }
   function setFocus(side){
+    if (side && !focusSide) {
+      frozenProgress = current;
+      // Deja aproximadamente una pantalla de recorrido desde la posición actual.
+      // Así se puede seguir bajando sin terminar primero la secuencia horizontal.
+      const rect = story.getBoundingClientRect();
+      story.style.height = `${Math.max(window.innerHeight, window.innerHeight - rect.top)}px`;
+      story.dataset.focusScrollHeight = story.style.height;
+    }
     focusSide=side;
+    if (!side) {
+      story.style.height = '';
+      delete story.dataset.focusScrollHeight;
+    }
     stage.classList.toggle('reel-focused',!!side);
     stage.classList.toggle('focus-left',side==='left');
     stage.classList.toggle('focus-right',side==='right');
