@@ -383,3 +383,8 @@
 #ipadProjectCategory {
   display: none !important;
 }
+
+/* Eliminar la capa de textos ilustrativos del iPad */
+.ipad-art-overlay {
+  display: none !important;
+}
