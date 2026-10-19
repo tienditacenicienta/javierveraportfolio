@@ -1,20 +1,19 @@
-# Javier Vera — Portafolio editorial interactivo
+# Javier Vera — Portfolio Space Black
 
-Maqueta en HTML, CSS y JavaScript vanilla inspirada en el storytelling de páginas de lanzamiento de producto: una portada con impacto visual, proyectos como protagonistas, un capítulo de enfoque y contacto. Combina scroll vertical con transiciones entre capítulos desde el menú.
+Portafolio de una sola página con narrativa vertical cinematográfica, inspirado en la forma en que Apple presenta visualmente el iPad Pro, sin copiar su diseño literal.
 
-## Archivos
-- `index.html`: estructura y textos.
-- `styles.css`: diseño responsive, composición, animaciones y transiciones.
-- `script.js`: navegación entre capítulos, detalle de proyectos y formulario que prepara un mensaje de WhatsApp.
-- `assets/projects/`: portadas SVG conceptuales de muestra.
+## Incluye
+- Dirección de arte Space Black con acentos azul eléctrico.
+- Hero con composición visual en capas y perspectiva.
+- Scroll vertical con revelados progresivos y secciones editoriales amplias.
+- Proyectos interactivos con modal de detalle.
+- Menú flotante, microinteracciones y ajustes para dispositivos móviles.
+- Formulario que prepara el mensaje y abre WhatsApp.
 
 ## Antes de publicar
-1. Abre `script.js` y reemplaza `51999999999` por tu número de WhatsApp en formato internacional, sin el signo `+` ni espacios.
-2. Sustituye las seis portadas SVG de `assets/projects/` por imágenes de tus proyectos reales. Las actuales son muestras conceptuales, no trabajos reales.
-3. Edita los textos, categorías y casos de estudio en `index.html` y `script.js`.
+1. Sustituye las imágenes SVG de `assets/projects/` por capturas o mockups de tus campañas reales. Puedes conservar los nombres de archivo o actualizar las rutas en `index.html` y `script.js`.
+2. En `script.js`, reemplaza `51999999999` por tu número de WhatsApp en formato internacional, sin `+` ni espacios.
+3. Ajusta los textos de cada proyecto a trabajos que realmente hayas realizado. No publiques resultados, clientes o métricas que no puedas respaldar.
+4. Sube el contenido de esta carpeta a la raíz del repositorio conectado a Cloudflare Pages.
 
-## Publicar en GitHub + Cloudflare Pages
-Sube el contenido de esta carpeta a la raíz del repositorio conectado a Cloudflare Pages. No requiere instalar dependencias ni compilar. Puedes probar abriendo `index.html` localmente o con Live Server.
-
-## Formulario
-El formulario no guarda datos ni envía correos: arma el mensaje y abre WhatsApp para que el visitante lo envíe manualmente.
+No requiere build ni dependencias de JavaScript. Las tipografías se cargan desde Google Fonts; si el visitante no tiene conexión, se usan fuentes de sistema como respaldo.
