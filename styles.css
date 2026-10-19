@@ -377,3 +377,9 @@
 @media(max-width:800px){
   .ipad-scroll-stage.focus-right .ipad-device-wrap{left:auto;right:12vw;transform:translate(50%,-50%);z-index:4}
 }
+
+/* Ocultar los títulos y categorías ilustrativos sobre la pantalla del iPad */
+#ipadProjectName,
+#ipadProjectCategory {
+  display: none !important;
+}
