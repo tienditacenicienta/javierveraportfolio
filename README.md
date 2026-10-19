@@ -1,19 +1,22 @@
-# Javier Vera — Portafolio Liquid Glass
+# Javier Vera — Portafolio brutalista creativo
 
-Boceto funcional en HTML, CSS y JavaScript. Navegación entre vistas con un shader WebGL procedural que dibuja una membrana de gel transparente, asimétrica y brillante, expandiéndose desde el centro de la pantalla.
+Concepto nuevo construido desde cero con HTML, CSS y JavaScript vanilla. Diseñado para publicar directamente en GitHub Pages o Cloudflare Pages.
+
+## Archivos
+- `index.html`: estructura y contenido de las vistas.
+- `styles.css`: identidad azul, tipografía, composición espacial y responsive.
+- `script.js`: navegación, transición entre vistas, lienzo de tarjetas arrastrables, modal y formulario a WhatsApp.
+- `assets/projects/`: seis portadas SVG originales de concepto para representar áreas de trabajo. Sustitúyelas por imágenes de tus proyectos reales antes de publicar.
 
 ## Probar localmente
-
-Abre `index.html` en un navegador moderno. WebGL debe estar habilitado. Para evitar restricciones de archivos locales, también puedes ejecutar un servidor estático desde esta carpeta (`python3 -m http.server 8000`) y visitar `http://localhost:8000`.
+Abre `index.html` en el navegador. Para una prueba más fiel, sirve la carpeta con una extensión de servidor local como Live Server en VS Code.
 
 ## Publicar
+Sube el contenido de esta carpeta al repositorio conectado a Cloudflare Pages. No necesita instalación ni proceso de build.
 
-Sustituye los archivos de la carpeta en tu repositorio de GitHub y realiza un commit. Cloudflare Pages desplegará el cambio si está conectado al repositorio.
+## Personalizar antes de publicar
+1. En `script.js`, reemplaza `51999999999` por tu número de WhatsApp internacional, solo números.
+2. Sustituye los SVG de `assets/projects/` por imágenes de tus proyectos reales, manteniendo los nombres de archivo o actualizando sus rutas en `index.html`.
+3. Actualiza el texto de proyectos y la información de contacto según tus necesidades.
 
-## Antes de publicar
-
-- Cambia `WHATSAPP_NUMBER` en `script.js` por tu número internacional, sin `+` ni espacios.
-- Sustituye los SVG de ejemplo en `assets/projects/` por imágenes reales de tus proyectos.
-- Añade tu CV en `assets/Javier-Vera-CV.pdf` o elimina el enlace correspondiente.
-
-La transición es una representación visual procedural con WebGL, no una simulación física exacta ni una refracción real del DOM.
+El formulario prepara un mensaje y abre WhatsApp; no envía correos ni guarda datos en un servidor. Las portadas SVG son piezas conceptuales originales de muestra, no se presentan como trabajos reales del diseñador.

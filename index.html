@@ -1,98 +1,69 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0756c9" />
-  <meta name="description" content="Portafolio de diseño gráfico y dirección de arte de Javier Vera." />
-  <title>Javier Vera® — Diseño & dirección de arte</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0754f5">
+  <meta name="description" content="Portafolio de diseño gráfico y dirección de arte de Javier Vera.">
+  <title>Javier Vera® — Diseño gráfico / Dirección de arte</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <canvas class="liquid-canvas" id="liquid-canvas" aria-hidden="true"></canvas>
-  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
-  <header class="topbar glass">
-    <a class="wordmark" href="#inicio" aria-label="Javier Vera, inicio">JV<span>®</span><small>DISEÑO GRÁFICO<br> DIRECCIÓN DE ARTE</small></a>
-    <nav class="nav-pills" aria-label="Navegación principal">
-      <a class="active" href="#inicio" data-view-link="inicio" aria-current="page">Inicio</a><a href="#proyectos" data-view-link="proyectos">Proyectos <span>08</span></a><a href="#enfoque" data-view-link="enfoque">Enfoque</a>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Javier Vera, inicio"><span class="brand-mark">JV<span>®</span></span><span class="brand-rule"></span><span class="brand-copy">DISEÑO GRÁFICO<br>DIRECCIÓN DE ARTE</span></a>
+    <nav class="nav" aria-label="Navegación principal">
+      <button class="nav-link is-active" data-view="home">Inicio</button>
+      <button class="nav-link" data-view="work">Proyectos <small>08</small></button>
+      <button class="nav-link" data-view="approach">Enfoque</button>
     </nav>
-    <a class="contact-pill glass" href="#contacto" data-view-link="contacto">Hablemos <span class="arrow">↗</span></a>
+    <button class="contact-button" data-view="contact">Hablemos <span>↗</span></button>
   </header>
 
-  <main class="view-container" id="view-container">
-    <div class="view-panel is-active" data-view="inicio" id="inicio">
-    <section class="hero">
-      <div class="hero-meta mono"><span>PORTAFOLIO INDEPENDIENTE / 2026</span><span>LIMA, PERÚ · DISPONIBLE PARA PROYECTOS</span></div>
-      <div class="hero-title-wrap">
-        <h1><span>IDEAS QUE</span><span class="title-second">MUEVEN <i>MARCAS.</i></span></h1>
-        <div class="hero-glass glass">
-          <span class="mini-label mono">DISEÑO / DIRECCIÓN DE ARTE</span>
-          <p>Convierto ideas en<br><b>comunicación visual</b><br>que se hace notar.</p>
-          <a href="#proyectos" data-view-link="proyectos" class="round-arrow" aria-label="Ver proyectos">↘</a>
-          <div class="glass-foot mono">CONCEPTO&nbsp; → &nbsp;DISEÑO&nbsp; → &nbsp;RESULTADO</div>
-        </div>
-      </div>
-      <p class="hero-intro">Diseño gráfico y dirección de arte para marcas que necesitan destacar, comunicar y perdurar.</p>
-      <div class="hero-bottom"><span class="availability"><i></i> ABIERTO A NUEVOS PROYECTOS</span><span class="scroll-note mono">SELECCIONA UNA VISTA ↗</span></div>
-      <div class="orbit-line" aria-hidden="true"></div>
-    </section>
-    </div>
-
-    <div class="view-panel" data-view="proyectos" id="proyectos">
-    <section class="project-section">
-      <div class="section-head"><div><span class="eyebrow mono">01 / SELECCIÓN VISUAL</span><h2>TRABAJO<br><em>EN MOVIMIENTO.</em></h2></div><p>Una selección de proyectos, exploraciones y sistemas visuales.<br><span class="mono">IMÁGENES TEMPORALES · REEMPLAZAR POR TRABAJO REAL</span></p></div>
-      <div class="project-stage">
-        <a class="project-card card-one" href="#contacto" data-project="01"><img src="assets/projects/work-01.svg" alt="Boceto visual temporal de proyecto 01"><span class="project-index mono">01 / BRANDING</span><span class="project-open">↗</span></a>
-        <a class="project-card card-two" href="#contacto" data-project="02"><img src="assets/projects/work-02.svg" alt="Boceto visual temporal de proyecto 02"><span class="project-index mono">02 / CAMPAÑA</span><span class="project-open">↗</span></a>
-        <a class="project-card card-three" href="#contacto" data-project="03"><img src="assets/projects/work-03.svg" alt="Boceto visual temporal de proyecto 03"><span class="project-index mono">03 / DIGITAL</span><span class="project-open">↗</span></a>
-        <a class="project-card card-four" href="#contacto" data-project="04"><img src="assets/projects/work-04.svg" alt="Boceto visual temporal de proyecto 04"><span class="project-index mono">04 / DIRECCIÓN DE ARTE</span><span class="project-open">↗</span></a>
-        <a class="project-card card-five" href="#contacto" data-project="05"><img src="assets/projects/work-05.svg" alt="Boceto visual temporal de proyecto 05"><span class="project-index mono">05 / IDENTIDAD</span><span class="project-open">↗</span></a>
-        <a class="project-card card-six" href="#contacto" data-project="06"><img src="assets/projects/work-06.svg" alt="Boceto visual temporal de proyecto 06"><span class="project-index mono">06 / EDITORIAL</span><span class="project-open">↗</span></a>
-        <a class="project-card card-seven" href="#contacto" data-project="07"><img src="assets/projects/work-07.svg" alt="Boceto visual temporal de proyecto 07"><span class="project-index mono">07 / SOCIAL</span><span class="project-open">↗</span></a>
-        <a class="project-card card-eight" href="#contacto" data-project="08"><img src="assets/projects/work-08.svg" alt="Boceto visual temporal de proyecto 08"><span class="project-index mono">08 / EXPERIMENTAL</span><span class="project-open">↗</span></a>
-      </div>
-      <div class="filmstrip mono" aria-label="Índice de proyectos"><span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span></div>
+  <main id="stage">
+    <section class="view home-view is-visible" data-panel="home" aria-label="Inicio">
+      <div class="meta-line"><span>PORTAFOLIO INDEPENDIENTE / 2026</span><span>LIMA, PERÚ · DISPONIBLE PARA PROYECTOS</span></div>
+      <div class="hero-title"><p class="eyebrow">01 / SELECCIÓN VISUAL</p><h1>IDEAS QUE<br><span class="outline-text">MUEVEN MARCAS.</span></h1></div>
+      <div class="hero-note glass-panel"><span class="micro">DISEÑO / DIRECCIÓN DE ARTE</span><p>Convierto ideas en comunicación visual que se hace notar.</p><span class="panel-foot">CONCEPTO → DISEÑO → RESULTADO</span></div>
+      <p class="hero-description">Diseño gráfico y dirección de arte para marcas que necesitan destacar, comunicar y perdurar.</p>
+      <button class="discover" data-view="work"><span class="status-dot"></span> EXPLORAR PROYECTOS <span class="arrow">↘</span></button>
+      <div class="home-orbit orbit-one" aria-hidden="true"></div><div class="home-orbit orbit-two" aria-hidden="true"></div>
     </section>
 
-    <section class="brands-section" aria-label="Experiencia con marcas">
-      <div class="brands-top"><span class="eyebrow mono">02 / EXPERIENCIA</span><span class="mono">MARCAS · EQUIPOS · AGENCIAS</span></div>
-      <div class="brand-marquee"><div class="brand-track"><span>PORTA</span><span>MATERNELLE</span><span>GRAVITY</span><span>CIRCUIT MEDIA</span><span>OEA EDUCACIÓN</span><span>SISTEMAV</span><span>YAQUA</span><span>PORTA</span><span>MATERNELLE</span><span>GRAVITY</span><span>CIRCUIT MEDIA</span><span>OEA EDUCACIÓN</span><span>SISTEMAV</span><span>YAQUA</span></div></div>
-      <p class="brands-note">Experiencia construida colaborando con equipos y marcas de distintas industrias.</p>
-    </section>
-    </div>
-
-    <div class="view-panel" data-view="enfoque" id="enfoque">
-    <section class="approach">
-      <div class="approach-label mono">03 / CÓMO PUEDO AYUDAR</div>
-      <div class="approach-main"><h2>NO ES SOLO<br>QUE SE VEA <span>BIEN.</span></h2><p>Es encontrar la forma visual correcta para una idea, una marca o un objetivo. Desde el concepto hasta la ejecución, cada proyecto se construye según lo que realmente necesita.</p>
-        <div class="service-cloud"><span class="glass">Diseño gráfico</span><span class="glass">Dirección de arte</span><span class="glass">Branding</span><span class="glass">Campañas</span><span class="glass">Contenido digital</span><span class="glass">Sistemas visuales</span></div>
-      </div>
-      <div class="approach-foot mono"><span>01 — ESCUCHAR</span><span>02 — PROPONER</span><span>03 — HACERLO REAL</span></div>
-    </section>
-    </div>
-
-    <div class="view-panel" data-view="contacto" id="contacto">
-    <section class="contact-section">
-      <div class="contact-orb" aria-hidden="true"></div>
-      <span class="eyebrow mono">04 / CONTACTO</span>
-      <h2>¿QUÉ IDEA<br>TIENES <em>EN MENTE?</em></h2>
-      <div class="contact-grid"><p>Cuéntame qué necesitas resolver y con qué presupuesto cuentas. Te responderé con una propuesta pensada para tu proyecto.</p>
-        <form id="brief-form" class="brief-card glass">
-          <label>Tu nombre <input name="nombre" type="text" placeholder="¿Cómo te llamas?" autocomplete="name"></label>
-          <label>Empresa o marca <input name="marca" type="text" placeholder="Nombre de empresa (opcional)"></label>
-          <label>¿Qué necesitas? <textarea name="brief" rows="3" placeholder="Cuéntame un poco sobre tu idea..." required></textarea></label>
-          <label>Presupuesto estimado <select name="presupuesto"><option value="Por definir">Aún por definir</option><option>Menos de S/ 500</option><option>S/ 500 – S/ 1,500</option><option>S/ 1,500 – S/ 3,000</option><option>Más de S/ 3,000</option><option>Prefiero conversarlo</option></select></label>
-          <button type="submit">Enviar brief por WhatsApp <span>↗</span></button>
-          <small>Se abrirá WhatsApp con el mensaje listo para revisar y enviar.</small>
-        </form>
+    <section class="view work-view" data-panel="work" aria-label="Proyectos" aria-hidden="true">
+      <div class="work-heading"><div><p class="eyebrow">02 / LIENZO DE PROYECTOS</p><h2>TRABAJO<br><span class="outline-text">EN MOVIMIENTO.</span></h2></div><p class="work-intro">Una selección de proyectos, exploraciones y sistemas visuales.<br><span>ARRASTRA LAS PIEZAS PARA EXPLORAR</span></p></div>
+      <div class="project-canvas" id="projectCanvas" aria-label="Lienzo interactivo de proyectos">
+        <article class="project-card card-a" data-project="01" tabindex="0" aria-label="Proyecto 01, campaña visual"><div class="project-image"><img src="assets/projects/01-campaign.svg" alt="Composición gráfica de campaña con formas geométricas coral y lima"></div><div class="project-caption"><span>01 / CAMPAÑA</span><span>↗</span></div></article>
+        <article class="project-card card-b" data-project="02" tabindex="0" aria-label="Proyecto 02, identidad de marca"><div class="project-image"><img src="assets/projects/02-brand.svg" alt="Estudio de identidad visual con tipografía y círculos de color"></div><div class="project-caption"><span>02 / IDENTIDAD</span><span>↗</span></div></article>
+        <article class="project-card card-c" data-project="03" tabindex="0" aria-label="Proyecto 03, sistema visual"><div class="project-image"><img src="assets/projects/03-system.svg" alt="Sistema gráfico técnico en negro con círculos concéntricos y líneas"></div><div class="project-caption"><span>03 / SISTEMA VISUAL</span><span>↗</span></div></article>
+        <article class="project-card card-d" data-project="04" tabindex="0" aria-label="Proyecto 04, dirección de arte"><div class="project-image"><img src="assets/projects/04-artdirection.svg" alt="Póster gráfico con diagonales violeta, lima y coral"></div><div class="project-caption"><span>04 / DIRECCIÓN DE ARTE</span><span>↗</span></div></article>
+        <article class="project-card card-e" data-project="05" tabindex="0" aria-label="Proyecto 05, diseño editorial"><div class="project-image"><img src="assets/projects/05-editorial.svg" alt="Diseño editorial tipográfico en azul eléctrico y blanco"></div><div class="project-caption"><span>05 / EDITORIAL</span><span>↗</span></div></article>
+        <article class="project-card card-f" data-project="06" tabindex="0" aria-label="Proyecto 06, contenido digital"><div class="project-image"><img src="assets/projects/06-digital.svg" alt="Piezas digitales abstractas con gradientes azules y formas tridimensionales"></div><div class="project-caption"><span>06 / CONTENIDO DIGITAL</span><span>↗</span></div></article>
+        <div class="canvas-hint">MANTÉN Y ARRASTRA <span>↔</span></div>
       </div>
     </section>
-    </div>
+
+    <section class="view approach-view" data-panel="approach" aria-label="Enfoque" aria-hidden="true">
+      <div class="approach-top"><p class="eyebrow">03 / CÓMO PUEDO AYUDAR</p><span class="micro">IDEA → ESTRATEGIA → FORMA</span></div>
+      <div class="approach-content"><h2>NO ES SOLO<br>QUE SE VEA <span>BIEN.</span></h2><p>Es encontrar la forma visual correcta para una idea, una marca o un objetivo. Desde el concepto hasta la ejecución, cada proyecto se construye según lo que realmente necesita.</p></div>
+      <div class="service-list"><span>Diseño gráfico</span><span>Dirección de arte</span><span>Branding</span><span>Campañas</span><span>Contenido digital</span><span>Sistemas visuales</span></div>
+      <div class="process-row"><span>01 — ESCUCHAR</span><span>02 — PROPONER</span><span>03 — HACERLO REAL</span></div>
+      <div class="approach-stamp">BUENAS<br>IDEAS<br><b>✳</b></div>
+    </section>
+
+    <section class="view contact-view" data-panel="contact" aria-label="Contacto" aria-hidden="true">
+      <p class="eyebrow">04 / INICIEMOS ALGO</p><h2>¿QUÉ VAMOS<br>A <span class="outline-text">CREAR?</span></h2>
+      <div class="contact-layout"><p>Cuéntame qué necesitas resolver, qué te gustaría conseguir y cuál es el presupuesto que tienes en mente. Armemos una propuesta que tenga sentido.</p>
+        <form id="contactForm"><label>Tu nombre<input name="name" placeholder="¿Cómo te llamas?" autocomplete="name"></label><label>Empresa o marca<input name="company" placeholder="Nombre de tu marca (opcional)"></label><label>Cuéntame sobre el proyecto<textarea name="brief" rows="3" placeholder="Necesito desarrollar…" required></textarea></label><label>Presupuesto estimado<select name="budget"><option value="Por definir">Por definir</option><option>Menos de S/ 1,000</option><option>S/ 1,000 – 3,000</option><option>S/ 3,000 – 6,000</option><option>Más de S/ 6,000</option></select></label><button class="send-button" type="submit">CONTINUAR POR WHATSAPP <span>↗</span></button></form>
+      </div>
+    </section>
   </main>
-  <footer class="footer"><a href="#inicio" data-view-link="inicio" class="footer-mark">JV®</a><span class="mono">DISEÑO CON INTENCIÓN. IDEAS EN MOVIMIENTO.</span><a href="#contacto" data-view-link="contacto">Hablemos ↗</a><span class="mono">© 2026 JAVIER VERA</span></footer>
+  <footer class="site-footer"><span>JAVIER VERA® / DISEÑO GRÁFICO & DIRECCIÓN DE ARTE</span><span class="footer-center">HECHO PARA HACERSE NOTAR</span><span>© 2026</span></footer>
+  <div class="transition-layer" id="transitionLayer" aria-hidden="true"><div class="transition-shape"></div><div class="transition-shine"></div></div>
+  <div class="project-modal" id="projectModal" aria-hidden="true"><button class="modal-close" aria-label="Cerrar proyecto">×</button><div class="modal-content"><span class="modal-index">PROYECTO / <b>01</b></span><h3>Una idea en construcción.</h3><p>Esta pieza es un marcador visual. Sustitúyela por un proyecto real y añade aquí el contexto cuando quieras desarrollar una ficha.</p><span class="modal-tag">CONCEPTO · DISEÑO · EJECUCIÓN</span></div></div>
   <script src="script.js"></script>
 </body>
 </html>
