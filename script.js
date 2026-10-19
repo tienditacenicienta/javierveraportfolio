@@ -117,39 +117,49 @@ function showView(nextView, updateHistory=true) {
   switchingView = true;
   const oldPanel = document.querySelector(`[data-view="${currentView}"]`);
   const started = performance.now();
-  const duration = 1320;
+  const duration = 1180;
   nextPanel.classList.add('is-revealing');
   nextPanel.style.clipPath = makeLiquidMask(0);
+  nextPanel.style.opacity = '1';
   nextPanel.setAttribute('aria-hidden','false');
-  let raf = 0;
-  const animateMask = (now) => {
-    const raw = Math.min(1, (now - started) / duration);
-    const eased = 1 - Math.pow(1 - raw, 3.2);
-    nextPanel.style.clipPath = makeLiquidMask(eased, now * 0.001);
-    if (raw < 1) {
-      raf = requestAnimationFrame(animateMask);
-    } else {
-      nextPanel.style.clipPath = '';
-      nextPanel.classList.remove('is-revealing');
-      setActiveView(nextView);
-      switchingView = false;
-    }
-  };
   nextPanel.style.display = 'block';
   nextPanel.style.position = 'absolute';
   nextPanel.style.inset = '0';
   nextPanel.style.width = '100%';
   nextPanel.style.zIndex = '2';
-  oldPanel?.classList.add('is-under-reveal');
+  if (oldPanel) {
+    oldPanel.classList.add('is-under-reveal');
+    oldPanel.style.transition = 'opacity 360ms ease-out';
+    oldPanel.style.opacity = '1';
+  }
   liquid.run(() => {});
+  let raf = 0;
+  const animateMask = (now) => {
+    const raw = Math.min(1, (now - started) / duration);
+    // Ease the reveal more evenly: avoids showing almost the entire next view too early.
+    const eased = raw * raw * (3 - 2 * raw);
+    nextPanel.style.clipPath = makeLiquidMask(eased, now * 0.001);
+    // Fade the previous view as the liquid membrane passes, preventing doubled text/images.
+    if (oldPanel) oldPanel.style.opacity = String(1 - Math.max(0, Math.min(1, (raw - .12) / .48)));
+    if (raw < 1) {
+      raf = requestAnimationFrame(animateMask);
+    } else {
+      nextPanel.style.clipPath = '';
+      nextPanel.classList.remove('is-revealing');
+      if (oldPanel) {
+        oldPanel.classList.remove('is-under-reveal');
+        oldPanel.style.transition = '';
+        oldPanel.style.opacity = '';
+      }
+      setActiveView(nextView);
+      nextPanel.style.position = '';
+      nextPanel.style.inset = '';
+      nextPanel.style.width = '';
+      nextPanel.style.zIndex = '';
+      switchingView = false;
+    }
+  };
   raf = requestAnimationFrame(animateMask);
-  window.setTimeout(() => {
-    oldPanel?.classList.remove('is-under-reveal');
-    nextPanel.style.position = '';
-    nextPanel.style.inset = '';
-    nextPanel.style.width = '';
-    nextPanel.style.zIndex = '';
-  }, duration + 30);
 }
 viewLinks.forEach(link=>link.addEventListener('click',event=>{event.preventDefault();showView(link.dataset.viewLink,true);}));
 function syncViewFromHash(){const requested=window.location.hash.replace('#','')||'inicio';if(requested!==currentView)showView(requested,false);}

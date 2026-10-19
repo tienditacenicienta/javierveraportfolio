@@ -27,3 +27,9 @@ html{scroll-behavior:auto}
 .view-panel.is-under-reveal{display:block!important;position:relative;z-index:1;}
 .liquid-canvas{z-index:3;mix-blend-mode:screen;}
 @media(prefers-reduced-motion:reduce){.view-panel.is-revealing{clip-path:none!important;}}
+
+/* Fix de composición: evitar que las vistas anterior y nueva permanezcan legibles a la vez. */
+.view-container{position:relative;isolation:isolate;overflow:hidden}
+.view-panel.is-under-reveal{z-index:1!important;pointer-events:none}
+.view-panel.is-revealing{z-index:2!important;will-change:clip-path}
+.liquid-canvas{z-index:4!important;pointer-events:none}
