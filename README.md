@@ -1,22 +1,20 @@
-# Javier Vera — Portafolio brutalista creativo
+# Javier Vera — Portafolio editorial interactivo
 
-Concepto nuevo construido desde cero con HTML, CSS y JavaScript vanilla. Diseñado para publicar directamente en GitHub Pages o Cloudflare Pages.
+Maqueta en HTML, CSS y JavaScript vanilla inspirada en el storytelling de páginas de lanzamiento de producto: una portada con impacto visual, proyectos como protagonistas, un capítulo de enfoque y contacto. Combina scroll vertical con transiciones entre capítulos desde el menú.
 
 ## Archivos
-- `index.html`: estructura y contenido de las vistas.
-- `styles.css`: identidad azul, tipografía, composición espacial y responsive.
-- `script.js`: navegación, transición entre vistas, lienzo de tarjetas arrastrables, modal y formulario a WhatsApp.
-- `assets/projects/`: seis portadas SVG originales de concepto para representar áreas de trabajo. Sustitúyelas por imágenes de tus proyectos reales antes de publicar.
+- `index.html`: estructura y textos.
+- `styles.css`: diseño responsive, composición, animaciones y transiciones.
+- `script.js`: navegación entre capítulos, detalle de proyectos y formulario que prepara un mensaje de WhatsApp.
+- `assets/projects/`: portadas SVG conceptuales de muestra.
 
-## Probar localmente
-Abre `index.html` en el navegador. Para una prueba más fiel, sirve la carpeta con una extensión de servidor local como Live Server en VS Code.
+## Antes de publicar
+1. Abre `script.js` y reemplaza `51999999999` por tu número de WhatsApp en formato internacional, sin el signo `+` ni espacios.
+2. Sustituye las seis portadas SVG de `assets/projects/` por imágenes de tus proyectos reales. Las actuales son muestras conceptuales, no trabajos reales.
+3. Edita los textos, categorías y casos de estudio en `index.html` y `script.js`.
 
-## Publicar
-Sube el contenido de esta carpeta al repositorio conectado a Cloudflare Pages. No necesita instalación ni proceso de build.
+## Publicar en GitHub + Cloudflare Pages
+Sube el contenido de esta carpeta a la raíz del repositorio conectado a Cloudflare Pages. No requiere instalar dependencias ni compilar. Puedes probar abriendo `index.html` localmente o con Live Server.
 
-## Personalizar antes de publicar
-1. En `script.js`, reemplaza `51999999999` por tu número de WhatsApp internacional, solo números.
-2. Sustituye los SVG de `assets/projects/` por imágenes de tus proyectos reales, manteniendo los nombres de archivo o actualizando sus rutas en `index.html`.
-3. Actualiza el texto de proyectos y la información de contacto según tus necesidades.
-
-El formulario prepara un mensaje y abre WhatsApp; no envía correos ni guarda datos en un servidor. Las portadas SVG son piezas conceptuales originales de muestra, no se presentan como trabajos reales del diseñador.
+## Formulario
+El formulario no guarda datos ni envía correos: arma el mensaje y abre WhatsApp para que el visitante lo envíe manualmente.

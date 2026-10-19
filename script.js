@@ -1,148 +1,45 @@
-(() => {
-  const navButtons = [...document.querySelectorAll('[data-view]')];
-  const panels = [...document.querySelectorAll('[data-panel]')];
-  const transitionLayer = document.getElementById('transitionLayer');
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let currentView = 'home';
-  let switching = false;
-  let transitionTimer;
-
-  function setView(nextView) {
-    if (!nextView || nextView === currentView || switching) return;
-    const nextPanel = document.querySelector(`[data-panel="${nextView}"]`);
-    if (!nextPanel) return;
-    switching = true;
-    navButtons.forEach(button => {
-      const active = button.dataset.view === nextView;
-      if (button.classList.contains('nav-link')) button.classList.toggle('is-active', active);
-    });
-
-    if (reducedMotion) {
-      panels.forEach(panel => {
-        const active = panel.dataset.panel === nextView;
-        panel.classList.toggle('is-visible', active);
-        panel.setAttribute('aria-hidden', String(!active));
-      });
-      currentView = nextView;
-      switching = false;
-      history.replaceState(null, '', `#${nextView}`);
-      return;
-    }
-
-    transitionLayer.classList.remove('is-running');
-    void transitionLayer.offsetWidth;
-    transitionLayer.classList.add('is-running');
-    // A single, brief overlap is intentional during the wipe; the old view is hidden
-    // before the new view becomes fully visible, avoiding a persistent double image.
-    window.clearTimeout(transitionTimer);
-    transitionTimer = window.setTimeout(() => {
-      panels.forEach(panel => {
-        const active = panel.dataset.panel === nextView;
-        panel.classList.toggle('is-visible', active);
-        panel.setAttribute('aria-hidden', String(!active));
-      });
-      currentView = nextView;
-      history.replaceState(null, '', `#${nextView}`);
-      window.setTimeout(() => {
-        transitionLayer.classList.remove('is-running');
-        switching = false;
-      }, 90);
-    }, 330);
-    window.setTimeout(() => {
-      transitionLayer.classList.remove('is-running');
-      switching = false;
-    }, 850);
-  }
-
-  navButtons.forEach(button => button.addEventListener('click', () => setView(button.dataset.view)));
-  const hashView = location.hash.replace('#', '');
-  if (panels.some(panel => panel.dataset.panel === hashView)) {
-    panels.forEach(panel => {
-      const active = panel.dataset.panel === hashView;
-      panel.classList.toggle('is-visible', active);
-      panel.setAttribute('aria-hidden', String(!active));
-    });
-    navButtons.forEach(button => button.classList.toggle('is-active', button.classList.contains('nav-link') && button.dataset.view === hashView));
-    currentView = hashView;
-  }
-
-  // Free-canvas cards: drag with pointer, preserve their starting layout and add depth on hover.
-  const canvas = document.getElementById('projectCanvas');
-  const cards = [...document.querySelectorAll('.project-card')];
-  let topZ = 10;
-  cards.forEach(card => {
-    let dragging = false, moved = false, startX = 0, startY = 0, initialX = 0, initialY = 0;
-    card.addEventListener('pointerdown', event => {
-      if (event.button !== 0) return;
-      dragging = true; moved = false;
-      startX = event.clientX; startY = event.clientY;
-      const translateValue = getComputedStyle(card).translate;
-      const parts = translateValue && translateValue !== 'none' ? translateValue.split(' ') : ['0px', '0px'];
-      initialX = parseFloat(parts[0]) || 0;
-      initialY = parseFloat(parts[1]) || 0;
-      card.style.zIndex = String(++topZ);
-      card.setPointerCapture(event.pointerId);
-      card.style.transition = 'filter .2s';
-      card.style.filter = 'drop-shadow(0 35px 30px rgba(0,10,50,.4))';
-    });
-    card.addEventListener('pointermove', event => {
-      if (!dragging) return;
-      const dx = event.clientX - startX, dy = event.clientY - startY;
-      if (Math.abs(dx) + Math.abs(dy) > 5) moved = true;
-      card.style.translate = `${initialX + dx}px ${initialY + dy}px`;
-    });
-    const endDrag = event => {
-      if (!dragging) return;
-      dragging = false;
-      try { card.releasePointerCapture(event.pointerId); } catch (_) {}
-      card.style.filter = '';
-      if (moved) card.dataset.moved = 'true';
-      window.setTimeout(() => { card.dataset.moved = 'false'; }, 180);
-    };
-    card.addEventListener('pointerup', endDrag);
-    card.addEventListener('pointercancel', endDrag);
-    card.addEventListener('click', () => {
-      if (card.dataset.moved === 'true') return;
-      openProject(card.dataset.project);
-    });
-    card.addEventListener('keydown', event => {
-      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openProject(card.dataset.project); }
-    });
-    card.addEventListener('pointerenter', () => { if (!dragging) card.style.filter = 'drop-shadow(0 28px 24px rgba(0,10,50,.3))'; });
-    card.addEventListener('pointerleave', () => { if (!dragging) card.style.filter = ''; });
-  });
-
-  const modal = document.getElementById('projectModal');
-  const modalIndex = modal.querySelector('.modal-index b');
-  function openProject(index) {
-    modalIndex.textContent = index;
-    modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
-  }
-  function closeProject() { modal.classList.remove('is-open'); modal.setAttribute('aria-hidden', 'true'); }
-  modal.querySelector('.modal-close').addEventListener('click', closeProject);
-  modal.addEventListener('click', event => { if (event.target === modal) closeProject(); });
-  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeProject(); });
-
-  document.getElementById('contactForm').addEventListener('submit', event => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const name = (form.get('name') || '').toString().trim();
-    const company = (form.get('company') || '').toString().trim();
-    const brief = (form.get('brief') || '').toString().trim();
-    const budget = (form.get('budget') || 'Por definir').toString();
-    const message = `Hola Javier, quiero conversar sobre un proyecto.%0A%0A${name ? `Nombre: ${encodeURIComponent(name)}%0A` : ''}${company ? `Marca/empresa: ${encodeURIComponent(company)}%0A` : ''}Proyecto: ${encodeURIComponent(brief)}%0APresupuesto estimado: ${encodeURIComponent(budget)}`;
-    // Replace this example number with your WhatsApp number in international format.
-    window.open(`https://wa.me/51999999999?text=${message}`, '_blank', 'noopener,noreferrer');
-  });
-
-  // Subtle pointer parallax for the home background; disable on touch devices.
-  if (window.matchMedia('(pointer:fine)').matches) {
-    document.addEventListener('pointermove', event => {
-      const x = (event.clientX / window.innerWidth - .5) * 9;
-      const y = (event.clientY / window.innerHeight - .5) * 9;
-      document.documentElement.style.setProperty('--pointer-x', `${x}px`);
-      document.documentElement.style.setProperty('--pointer-y', `${y}px`);
-    }, { passive: true });
-  }
-})();
+// Cambia este número por tu WhatsApp en formato internacional, sin + ni espacios.
+const WHATSAPP_NUMBER = '51999999999';
+const views = [...document.querySelectorAll('.view')];
+const menu = document.getElementById('menuPanel');
+const menuToggle = document.getElementById('menuToggle');
+let activeView = 'inicio';
+function showView(name, scroll = true) {
+  const target = document.getElementById(`view-${name}`);
+  if (!target) return;
+  views.forEach(view => view.classList.toggle('active', view === target));
+  activeView = name;
+  menu.classList.remove('open'); menu.setAttribute('aria-hidden','true');
+  menuToggle.setAttribute('aria-expanded','false'); menuToggle.querySelector('span').textContent = '＋';
+  if (scroll) window.scrollTo({top:0,behavior:'smooth'});
+  history.replaceState(null,'', name === 'inicio' ? location.pathname : `#${name}`);
+}
+menuToggle.addEventListener('click', () => {
+  const open = !menu.classList.contains('open'); menu.classList.toggle('open',open);
+  menu.setAttribute('aria-hidden',String(!open)); menuToggle.setAttribute('aria-expanded',String(open));
+  menuToggle.querySelector('span').textContent = open ? '×' : '＋';
+});
+document.querySelectorAll('[data-view]').forEach(el => el.addEventListener('click', e => { e.preventDefault(); showView(el.dataset.view); }));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){menu.classList.remove('open');closeModal();}});
+const projectInfo = {
+ campaign:{kicker:'01 / CAMPAÑAS',title:'Ideas que capturan atención.',image:'assets/projects/01-campaign.svg',text:'Aquí puedes contar el reto, la idea creativa, las piezas desarrolladas y cómo se conectó el concepto con la audiencia.'},
+ brand:{kicker:'02 / BRANDING',title:'Marcas con una voz propia.',image:'assets/projects/02-brand.svg',text:'Presenta la estrategia visual, el sistema de identidad, sus aplicaciones y las decisiones que dieron coherencia a la marca.'},
+ system:{kicker:'03 / SISTEMAS GRÁFICOS',title:'Coherencia en cada punto.',image:'assets/projects/03-system.svg',text:'Muestra cómo una idea visual puede crecer y mantenerse consistente en múltiples formatos y puntos de contacto.'},
+ art:{kicker:'04 / DIRECCIÓN DE ARTE',title:'Un mundo visual reconocible.',image:'assets/projects/04-artdirection.svg',text:'Describe la dirección visual, el lenguaje gráfico, la composición y la atmósfera que definieron el proyecto.'},
+ editorial:{kicker:'05 / DISEÑO EDITORIAL',title:'Contenido con intención.',image:'assets/projects/05-editorial.svg',text:'Explica cómo la jerarquía, el ritmo y la tipografía ayudaron a contar mejor la historia.'},
+ digital:{kicker:'06 / DIGITAL',title:'Diseño pensado para moverse.',image:'assets/projects/06-digital.svg',text:'Añade aquí interfaces, piezas sociales, contenido para campañas o experiencias digitales reales.'}
+};
+const modal = document.getElementById('projectModal');
+function openModal(key){const p=projectInfo[key];if(!p)return;document.getElementById('modalKicker').textContent=p.kicker;document.getElementById('modalTitle').textContent=p.title;document.getElementById('modalImage').src=p.image;document.getElementById('modalText').textContent=p.text;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+function closeModal(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';}
+document.querySelectorAll('[data-project]').forEach(el=>el.addEventListener('click',()=>openModal(el.dataset.project)));
+document.getElementById('modalClose').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.getElementById('contactForm').addEventListener('submit',e=>{
+ e.preventDefault();const form=new FormData(e.currentTarget);
+ const msg=[`Hola, soy ${form.get('nombre')}.`,`Me interesa: ${form.get('tipo')}.`,form.get('detalle')?`Detalles: ${form.get('detalle')}`:'',`Presupuesto aproximado: ${form.get('presupuesto')||'No definido'}.`].filter(Boolean).join('\n');
+ if(WHATSAPP_NUMBER==='51999999999'){alert('Antes de publicar, abre script.js y reemplaza 51999999999 por tu número de WhatsApp internacional.');return;}
+ window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank','noopener,noreferrer');
+});
+document.getElementById('directWhatsapp').addEventListener('click',e=>{e.preventDefault();if(WHATSAPP_NUMBER==='51999999999'){showView('contacto');alert('Configura tu número de WhatsApp en script.js antes de publicar.');return;}window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hola, me gustaría conversar sobre un proyecto de diseño.')}`,'_blank','noopener,noreferrer');});
+if(location.hash && document.getElementById(`view-${location.hash.slice(1)}`)) showView(location.hash.slice(1),false);
