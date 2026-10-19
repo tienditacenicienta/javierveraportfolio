@@ -20,3 +20,16 @@ No requiere build ni dependencias de JavaScript. Las tipografías se cargan desd
 
 
 Se agregó la sección “Sobre mí” con métricas profesionales y una muestra tipográfica de marcas como referencia. Antes de publicar, verifica que todas las marcas mostradas correspondan a proyectos en los que participaste y reemplaza los logotipos tipográficos por los archivos oficiales que tengas autorización de usar.
+
+
+## Escena iPad + reels (integración)
+- La sección `#work` incorpora un iPad central con 5 proyectos que avanzan continuamente con el scroll vertical.
+- Los dos laterales están dentro de marcos de iPhone. Haz clic en un lateral para ampliarlo al centro; el iPad se desplaza hacia ese lado. Haz clic otra vez, pulsa “VOLVER A LOS PROYECTOS” o presiona Escape para regresar.
+- Las piezas actuales son SVG conceptuales. Sustituye los archivos en `assets/projects/` o cambia las rutas en `index.html` para usar tus imágenes reales.
+- Añade los videos `assets/reels/reel-01.mp4` y `assets/reels/reel-02.mp4` cuando estén listos. Mientras no existan, se muestran placeholders.
+- El comportamiento de la escena está en `ipad-experience.js` y sus estilos al final de `styles.css`.
+- La demo mantiene el resto de secciones y textos del ZIP que compartiste.
+
+
+## Ajuste de ubicación (versión corregida)
+La experiencia iPad/iPhone ahora sustituye el collage de tarjetas del inicio (hero). La sección “Campañas y proyectos” se restauró desde el ZIP original descargado del repositorio y no contiene la experiencia iPad. Los archivos de reels continúan siendo opcionales; mientras no existan, se muestran las composiciones de reserva.

@@ -226,3 +226,154 @@
   #contactForm input, #contactForm select, #contactForm textarea { padding: 12px; }
 }
 
+
+
+/* =========================================================
+   IPAD SCROLL EXPERIENCE — integrated portfolio scene
+   ========================================================= */
+.ipad-scroll-story{height:500vh;position:relative;margin:5vh calc(-1 * min(7.2vw,calc((100vw - 1320px)/2))) 0}
+.ipad-scroll-stage{position:sticky;top:0;height:100svh;min-height:620px;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 43%,#171820 0%,#0b0c10 48%,#050506 80%);border-top:1px solid #ffffff16;border-bottom:1px solid #ffffff16}
+.ipad-scroll-stage:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 49.9%,#ffffff08 50%,transparent 50.1%);pointer-events:none}
+.ipad-stage-topline{position:absolute;top:30px;left:5vw;right:5vw;display:flex;justify-content:space-between;color:#9bb3ff;font:10px var(--mono);letter-spacing:.08em;z-index:4}
+.ipad-stage-topline i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#9bb3ff;margin-right:9px}
+.ipad-stage-topline span:last-child{color:#7e808b}
+.ipad-device-wrap{position:absolute;left:50%;top:45%;width:min(65vw,930px);transform:translate(-50%,-50%);z-index:2;filter:drop-shadow(0 32px 45px #0008);scale:var(--ipad-scale,1);transition:left .78s cubic-bezier(.2,.8,.2,1),width .78s cubic-bezier(.2,.8,.2,1),filter .5s}
+.ipad-device{position:relative;padding:clamp(7px,.85vw,12px);background:linear-gradient(145deg,#3b3c43,#111216 28%,#27282f 72%,#0c0d10);border:1px solid #555761;border-radius:clamp(16px,2vw,27px);box-shadow:inset 0 0 0 1px #ffffff12,0 0 0 1px #000}
+.ipad-camera{position:absolute;z-index:5;top:4px;left:50%;width:3px;height:3px;border-radius:50%;background:#050506;transform:translateX(-50%)}
+.ipad-screen{position:relative;aspect-ratio:1.48;overflow:hidden;background:#101115;border:1px solid #08090b;border-radius:clamp(9px,1.1vw,15px)}
+.ipad-project-track{display:flex;width:500%;height:100%;will-change:transform;transform:translate3d(0,0,0)}
+.ipad-project-slide{position:relative;flex:0 0 20%;width:20%;height:100%;overflow:hidden;background:#111;isolation:isolate}
+.ipad-project-slide>img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.98);transform:scale(1.015)}
+.ipad-project-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0002,transparent 55%),linear-gradient(0deg,#0009,transparent 54%);pointer-events:none}
+.ipad-art-overlay{position:absolute;z-index:2;inset:7% 6%;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;color:#fff;text-shadow:0 2px 16px #0005;pointer-events:none}
+.ipad-art-overlay small{font:9px var(--mono);letter-spacing:.1em}
+.ipad-art-overlay b{font-size:clamp(35px,6.2vw,90px);font-weight:800;line-height:.78;letter-spacing:-.09em;max-width:80%}
+.ipad-art-overlay small:last-child{color:#ffffffc7}
+.ipad-project-slide:nth-child(2) .ipad-art-overlay b{color:#f9f2e6}
+.ipad-project-slide:nth-child(3) .ipad-art-overlay b{color:#d5ff5c}
+.ipad-project-slide:nth-child(4) .ipad-art-overlay b{color:#ff6a4c}
+.ipad-project-slide:nth-child(5) .ipad-art-overlay b{color:#d8c7ff}
+.ipad-homebar{position:absolute;bottom:4px;left:46%;width:8%;height:2px;border-radius:5px;background:#ffffff45}
+.ipad-caption{display:flex;align-items:center;gap:14px;padding:11px 5px 0;color:#a2a4af;font:9px var(--mono);letter-spacing:.04em}
+.ipad-caption #ipadProjectCount{margin-left:auto;color:#9bb3ff;white-space:nowrap}
+.ipad-caption #ipadProjectCount i{font-style:normal;color:#6c6e78}
+.ipad-open-mark{font-size:17px;color:#9bb3ff}
+.portfolio-reel{appearance:none;position:absolute;top:52%;width:clamp(112px,14.5vw,190px);padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer;z-index:1;transform-origin:center center;transition:left .78s cubic-bezier(.2,.8,.2,1),right .78s cubic-bezier(.2,.8,.2,1),top .78s cubic-bezier(.2,.8,.2,1),width .78s cubic-bezier(.2,.8,.2,1),transform .78s cubic-bezier(.2,.8,.2,1),opacity .45s ease,filter .45s ease}
+.portfolio-reel-left{left:5vw;transform:translateY(-23%) rotate(-2deg)}
+.portfolio-reel-right{right:5vw;transform:translateY(-23%) rotate(2deg)}
+.iphone-shell{display:block;position:relative;padding:7px 5px 8px;background:linear-gradient(145deg,#484a53,#111216 28%,#292b33 72%,#090a0c);border:1px solid #626571;border-radius:clamp(16px,1.8vw,24px);box-shadow:inset 0 0 0 2px #ffffff0c,0 18px 40px #0007}
+.iphone-dynamic-island{position:absolute;z-index:5;top:9px;left:50%;width:28%;height:7px;transform:translateX(-50%);border-radius:999px;background:#07080a;border:1px solid #ffffff0c}
+.iphone-screen{position:relative;display:block;aspect-ratio:9/17.5;overflow:hidden;border-radius:clamp(10px,1.25vw,16px);background:#111}
+.reel-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+.iphone-screen.video-ready .reel-video{opacity:1}
+.reel-fallback{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;padding:14px 10px;color:#fff}
+.reel-screen-blue .reel-fallback{background:#074ee9}
+.reel-screen-purple .reel-fallback{background:linear-gradient(145deg,#a600c6,#4b0b9b 65%,#160c4e)}
+.reel-fallback small{font:6px var(--mono);letter-spacing:.08em;position:relative;z-index:2}
+.reel-fallback b{font-size:clamp(20px,2.6vw,36px);font-weight:800;line-height:.8;letter-spacing:-.08em;position:absolute;left:12%;top:32%;z-index:2}
+.reel-fallback b em{font-style:normal;color:#ff632e}
+.reel-screen-purple .reel-fallback b em{color:#e5ff62}
+.fallback-orbit{position:absolute;left:5%;top:35%;width:90%;aspect-ratio:1;border:clamp(7px,1.2vw,15px) solid #ff632e;border-radius:50%;mix-blend-mode:screen}
+.fallback-purple-orb{position:absolute;left:12%;top:29%;width:90%;aspect-ratio:1;border-radius:50%;background:linear-gradient(135deg,#ff62df,#a84aff 45%,#4cf4ff)}
+.fallback-bottom{position:absolute!important;bottom:10px;left:10px}
+.phone-label{display:flex;justify-content:space-between;padding:8px 3px 0;color:#a5a6b0;font:8px var(--mono);letter-spacing:.08em}
+.portfolio-reel:focus-visible{outline:2px solid #9bb3ff;outline-offset:8px;border-radius:12px}
+.portfolio-reel:hover .iphone-shell{border-color:#9bb3ff}
+.ipad-scroll-instruction{position:absolute;top:79%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:7px;color:#a5a7b2;z-index:0;white-space:nowrap;transition:opacity .35s}
+.ipad-scroll-instruction>span{font-size:29px;color:#9bb3ff;line-height:1}
+.ipad-scroll-instruction p{margin:0;font-size:13px}
+.ipad-progress{height:2px;width:140px;background:#282a32;overflow:hidden;margin-top:7px}
+.ipad-progress i{display:block;height:100%;width:0;background:#9bb3ff;transform-origin:left}
+.ipad-stage-foot{position:absolute;bottom:20px;left:5vw;right:5vw;display:flex;justify-content:space-between;gap:20px;color:#696b76;font:9px var(--mono);letter-spacing:.05em}
+.ipad-stage-foot span:last-child{color:#a1a3ad;text-align:right}
+.ipad-return-button{position:absolute;z-index:8;top:70px;left:50%;transform:translate(-50%,8px);opacity:0;pointer-events:none;border:1px solid #ffffff30;border-radius:999px;padding:10px 14px;background:#101116df;color:#f0f1f5;font:9px var(--mono);letter-spacing:.07em;cursor:pointer;backdrop-filter:blur(12px);transition:opacity .3s,transform .3s}
+.ipad-scroll-stage.reel-focused .ipad-return-button{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.ipad-scroll-stage.reel-focused .ipad-scroll-instruction{opacity:.22}
+.ipad-scroll-stage.reel-focused .ipad-device-wrap{width:clamp(110px,14vw,190px);top:51%}
+.ipad-scroll-stage.focus-left .ipad-device-wrap{left:13vw}
+.ipad-scroll-stage.focus-right .ipad-device-wrap{left:87vw}
+.ipad-scroll-stage.reel-focused .portfolio-reel-left{left:50%;right:auto;top:47%;width:clamp(220px,27vw,360px);transform:translate(-50%,-50%) rotate(0);z-index:6}
+.ipad-scroll-stage.reel-focused .portfolio-reel-right{right:4vw;top:53%;width:clamp(95px,12vw,160px);transform:translateY(-20%) rotate(2deg);opacity:.7}
+.ipad-scroll-stage.focus-right .portfolio-reel-right{left:50%;right:auto;top:47%;width:clamp(220px,27vw,360px);transform:translate(-50%,-50%) rotate(0);z-index:6;opacity:1}
+.ipad-scroll-stage.focus-right .portfolio-reel-left{left:4vw;right:auto;top:53%;width:clamp(95px,12vw,160px);transform:translateY(-20%) rotate(-2deg);opacity:.7}
+.ipad-scroll-stage.reel-focused .iphone-screen{aspect-ratio:9/17.5}
+.ipad-scroll-stage.reel-focused .ipad-caption{font-size:7px;gap:4px}
+.ipad-scroll-stage.reel-focused .ipad-caption #ipadProjectCategory,.ipad-scroll-stage.reel-focused .ipad-homebar{display:none}
+@media(max-width:800px){
+ .ipad-scroll-story{height:480vh;margin-left:-6vw;margin-right:-6vw}
+ .ipad-scroll-stage{min-height:560px}
+ .ipad-stage-topline{top:20px;font-size:8px}
+ .ipad-device-wrap{width:88vw;top:42%}
+ .ipad-device{padding:6px;border-radius:16px}
+ .ipad-screen{border-radius:9px}
+ .ipad-caption{padding-top:8px;font-size:7px;gap:7px}
+ .ipad-art-overlay{inset:7% 5%}
+ .ipad-art-overlay small{font-size:6px}
+ .ipad-art-overlay b{font-size:clamp(30px,8vw,58px)}
+ .portfolio-reel{width:clamp(70px,18vw,118px);top:64%}
+ .portfolio-reel-left{left:3vw;transform:translateY(-8%) rotate(-3deg)}
+ .portfolio-reel-right{right:3vw;transform:translateY(-8%) rotate(3deg)}
+ .iphone-shell{padding:5px 4px 6px;border-radius:13px}
+ .iphone-dynamic-island{top:7px;height:5px}
+ .iphone-screen{border-radius:9px}
+ .reel-fallback{padding:9px 6px}
+ .reel-fallback small{font-size:5px}
+ .reel-fallback b{font-size:clamp(16px,4.4vw,25px)}
+ .phone-label{font-size:6px;padding-top:5px}
+ .ipad-scroll-instruction{top:78%;font-size:11px}
+ .ipad-scroll-instruction p{font-size:11px}
+ .ipad-progress{width:95px}
+ .ipad-stage-foot{bottom:12px;left:4vw;right:4vw;font-size:6px;gap:10px}
+ .ipad-scroll-stage.reel-focused .ipad-device-wrap{width:clamp(68px,17vw,105px);top:48%}
+ .ipad-scroll-stage.focus-left .ipad-device-wrap{left:12vw}
+ .ipad-scroll-stage.focus-right .ipad-device-wrap{left:88vw}
+ .ipad-scroll-stage.reel-focused .portfolio-reel-left{left:50%;top:45%;width:clamp(190px,52vw,280px)}
+ .ipad-scroll-stage.focus-right .portfolio-reel-right{left:50%;top:45%;width:clamp(190px,52vw,280px)}
+ .ipad-scroll-stage.reel-focused .portfolio-reel-right{right:2vw;width:clamp(60px,15vw,95px)}
+ .ipad-scroll-stage.focus-right .portfolio-reel-left{left:2vw;width:clamp(60px,15vw,95px)}
+ .ipad-return-button{top:62px;font-size:7px;padding:8px 10px}
+}
+@media(max-width:420px){
+ .ipad-device-wrap{width:94vw;top:40%}
+ .portfolio-reel{width:70px;top:62%}
+ .portfolio-reel-left{left:2vw}.portfolio-reel-right{right:2vw}
+ .ipad-scroll-instruction{top:78%}
+ .ipad-stage-foot{font-size:5px}
+}
+@media(prefers-reduced-motion:reduce){
+ .ipad-device-wrap,.portfolio-reel,.ipad-return-button,.reel-video{transition:none!important}
+}
+
+/* Fix sticky: el overflow:hidden del hero impedía que la escena quedara fija durante el scroll.
+   overflow:clip mantiene el recorte visual sin crear un contenedor de scroll que rompa position:sticky. */
+.hero.story-section{overflow:clip}
+
+/* Corrección de ubicación: la escena iPad/iPhone reemplaza el collage inicial del hero. */
+.hero > .ipad-scroll-story{width:calc(100% + 2vw);height:500vh;margin:2vh -1vw 0;position:relative;overflow:visible;flex:0 0 auto}
+.hero > .ipad-scroll-story .ipad-scroll-stage{width:100%}
+@media(max-width:800px){.hero > .ipad-scroll-story{width:calc(100% + 8vw);height:480vh;margin:2vh -4vw 0}}
+
+
+/* Ajustes de interacción solicitados: despejar la navegación fija y mantener accesible el iPad. */
+.ipad-scroll-stage{top:74px;height:calc(100svh - 74px);min-height:560px}
+.ipad-device-wrap{z-index:3}
+.ipad-scroll-stage.reel-focused .ipad-device-wrap{cursor:pointer}
+.ipad-scroll-stage.focus-left .ipad-device-wrap{left:13vw}
+.ipad-scroll-stage.focus-right .ipad-device-wrap{left:87vw}
+.ipad-scroll-stage.reel-focused .ipad-return-button{top:84px}
+@media(max-width:800px){
+  .ipad-scroll-stage{top:74px;height:calc(100svh - 74px);min-height:500px}
+  .ipad-scroll-stage.reel-focused .ipad-return-button{top:82px}
+  .ipad-scroll-stage.focus-left .ipad-device-wrap{left:12vw}
+  .ipad-scroll-stage.focus-right .ipad-device-wrap{left:88vw}
+}
+
+
+/* Ajustes finales: despejar textos auxiliares y mantener visible el iPad al seleccionar el reel derecho. */
+.ipad-stage-topline{display:none!important}
+.ipad-caption{display:none!important}
+.portfolio-reel .phone-label{display:none!important}
+.ipad-scroll-stage.focus-right .ipad-device-wrap{left:auto;right:13vw;transform:translate(50%,-50%);z-index:4}
+@media(max-width:800px){
+  .ipad-scroll-stage.focus-right .ipad-device-wrap{left:auto;right:12vw;transform:translate(50%,-50%);z-index:4}
+}
