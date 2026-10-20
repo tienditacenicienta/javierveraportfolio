@@ -19,3 +19,39 @@ function closeModal(){if(!modal)return;modal.classList.remove('open');modal.setA
 document.querySelectorAll('[data-project]').forEach(el=>el.addEventListener('click',()=>openModal(el.dataset.project)));
 document.getElementById('modalClose').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
 document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();const form=new FormData(e.currentTarget);const message=[`Hola, soy ${form.get('nombre')}.`,`Me interesa: ${form.get('tipo')}.`,form.get('detalle')?`Detalles / reto a resolver: ${form.get('detalle')}`:'',`Presupuesto aproximado: ${form.get('presupuesto')||'No definido'}.`,`Me gustaría conversar sobre el alcance y el siguiente paso.`].filter(Boolean).join('\n');if(WHATSAPP_NUMBER==='51999999999'){alert('Antes de publicar, abre script.js y reemplaza 51999999999 por tu número de WhatsApp internacional.');return;}window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');});
+
+/* Cargar y mostrar los videos reales de los reels */
+document.querySelectorAll('.portfolio-reel .reel-video').forEach(video => {
+  const screen = video.closest('.iphone-screen');
+
+  if (!screen) return;
+
+  // Mostrar el video cuando el navegador ya pueda reproducirlo.
+  const showVideo = () => {
+    screen.classList.add('video-ready');
+  };
+
+  video.addEventListener('loadeddata', showVideo);
+  video.addEventListener('canplay', showVideo);
+
+  // Si el video falla, conservar el diseño de respaldo.
+  video.addEventListener('error', () => {
+    screen.classList.remove('video-ready');
+    console.error('No se pudo cargar el reel:', video.currentSrc || video.src);
+  });
+
+  // Iniciar la carga y reproducción automática.
+  video.muted = true;
+  video.loop = true;
+  video.playsInline = true;
+  video.preload = 'auto';
+  video.load();
+
+  const playback = video.play();
+
+  if (playback && typeof playback.catch === 'function') {
+    playback.catch(error => {
+      console.warn('No se pudo iniciar la reproducción del reel:', error);
+    });
+  }
+});
