@@ -388,3 +388,17 @@
 .ipad-art-overlay {
   display: none !important;
 }
+
+/* FIX: mostrar los videos reales de los reels */
+.portfolio-reel .reel-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+
+.portfolio-reel .reel-fallback {
+  display: none !important;
+}
