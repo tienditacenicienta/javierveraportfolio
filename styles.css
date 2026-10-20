@@ -389,32 +389,28 @@
   display: none !important;
 }
 
-/* FIX: mostrar los videos reales de los reels */
-.portfolio-reel .reel-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 2;
-}
 
-/* Mostrar el video solo cuando esté listo */
+/* FIX: mostrar los videos reales de los reels */
+
+/* El video ocupa toda la pantalla del iPhone */
 .portfolio-reel .reel-video {
   position: absolute;
   inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   z-index: 2;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.3s ease;
 }
 
+/* Mostrar el video cuando JavaScript confirma que está listo */
 .portfolio-reel .iphone-screen.video-ready .reel-video {
   opacity: 1;
 }
 
+/* Ocultar el diseño ilustrativo únicamente cuando el video está listo */
 .portfolio-reel .iphone-screen.video-ready .reel-fallback {
   display: none !important;
 }
