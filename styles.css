@@ -512,3 +512,24 @@
     height: 38px;
   }
 }
+
+/* Logos de marcas: fondo negro uniforme */
+.brand-logo {
+  background: #000 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.brand-logo:hover {
+  background: #000 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.brand-logo img {
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
