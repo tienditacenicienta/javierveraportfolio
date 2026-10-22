@@ -7,6 +7,9 @@
 // sin el signo + ni espacios.
 const WHATSAPP_NUMBER = '51999999999';
 
+// Ruta del reel del proyecto Sistemas Gráficos.
+const SYSTEM_REEL_PATH = 'assets/reels/reel-03.mp4';
+
 
 /* =========================================================
    MENÚ PRINCIPAL
@@ -123,9 +126,7 @@ if (hasFinePointer && !prefersReducedMotion) {
 
 /* =========================================================
    PROYECTOS DE LA GALERÍA INFERIOR
-   IMPORTANTE:
-   Estas imágenes son independientes de las del iPad.
-   Se encuentran en assets/projects/.
+   Las imágenes son independientes de las del iPad.
    ========================================================= */
 
 const projects = {
@@ -139,8 +140,9 @@ const projects = {
   system: {
     kicker: '02 / SISTEMAS GRÁFICOS',
     title: 'Una identidad que se adapta y conecta.',
+    video: SYSTEM_REEL_PATH,
     image: 'assets/projects/work-02.svg',
-    text: 'Sistema gráfico y aplicaciones visuales del proyecto. Aquí podrás presentar la identidad, sus recursos y las adaptaciones realizadas.'
+    text: 'Sistema gráfico y aplicaciones visuales del proyecto. Una identidad que conecta sus distintas aplicaciones mediante un lenguaje visual consistente.'
   },
 
   art: {
@@ -160,7 +162,83 @@ const projects = {
 
 
 /* =========================================================
+   TARJETA DE SISTEMAS GRÁFICOS: REEL 03
+   Reemplaza la imagen de la tarjeta por el video vertical.
+   ========================================================= */
+
+function setupSystemReelCard() {
+  const systemCard = document.querySelector(
+    '[data-project="system"]'
+  );
+
+  if (!systemCard) {
+    console.warn(
+      'No se encontró el elemento [data-project="system"].'
+    );
+    return;
+  }
+
+  // Encontrar la imagen dentro de la tarjeta.
+  const cardImage = systemCard.querySelector(
+    '.project-visual img, .project-image img'
+  );
+
+  if (!cardImage) {
+    console.warn(
+      'No se encontró la imagen de la tarjeta de Sistemas Gráficos.'
+    );
+    return;
+  }
+
+  // Evitar insertar el mismo video dos veces.
+  if (systemCard.querySelector('.system-project-reel')) return;
+
+  const reel = document.createElement('video');
+
+  reel.className = 'system-project-reel';
+  reel.src = SYSTEM_REEL_PATH;
+  reel.autoplay = true;
+  reel.loop = true;
+  reel.muted = true;
+  reel.playsInline = true;
+  reel.preload = 'metadata';
+  reel.setAttribute(
+    'aria-label',
+    'Reel vertical del proyecto Sistemas Gráficos'
+  );
+
+  reel.addEventListener('error', () => {
+    console.error(
+      'No se pudo cargar el reel de Sistemas Gráficos:',
+      SYSTEM_REEL_PATH
+    );
+  });
+
+  // Mantener la tarjeta como elemento clicable.
+  const cardContainer = cardImage.closest(
+    '.project-visual, .project-image'
+  );
+
+  if (cardContainer) {
+    cardContainer.classList.add('project-reel-card');
+  }
+
+  cardImage.replaceWith(reel);
+
+  // Intentar reproducir sin sonido.
+  const playback = reel.play();
+
+  if (playback && typeof playback.catch === 'function') {
+    playback.catch(() => {
+      // Algunos navegadores pueden bloquear la reproducción automática.
+    });
+  }
+}
+
+
+/* =========================================================
    VENTANA DE DETALLE DE PROYECTO
+   Admite imágenes y videos.
    ========================================================= */
 
 const modal = document.getElementById('projectModal');
@@ -172,24 +250,96 @@ function openModal(key) {
 
   const modalKicker = document.getElementById('modalKicker');
   const modalTitle = document.getElementById('modalTitle');
-  const modalImage = document.getElementById('modalImage');
+  let modalMedia = document.getElementById('modalImage');
   const modalText = document.getElementById('modalText');
   const modalClose = document.getElementById('modalClose');
 
-  if (modalKicker) modalKicker.textContent = project.kicker;
-  if (modalTitle) modalTitle.textContent = project.title;
-  if (modalText) modalText.textContent = project.text;
+  if (modalKicker) {
+    modalKicker.textContent = project.kicker;
+  }
 
-  if (modalImage) {
-    modalImage.onerror = () => {
-      console.error(
-        'No se pudo cargar la imagen del proyecto:',
-        project.image
+  if (modalTitle) {
+    modalTitle.textContent = project.title;
+  }
+
+  if (modalText) {
+    modalText.textContent = project.text;
+  }
+
+  if (modalMedia) {
+    const wantsVideo = Boolean(project.video);
+    const currentIsVideo = modalMedia.tagName === 'VIDEO';
+
+    // Convertir el elemento multimedia si cambia el tipo de proyecto.
+    if (wantsVideo && !currentIsVideo) {
+      const video = document.createElement('video');
+
+      video.id = 'modalImage';
+      video.className = modalMedia.className;
+      modalMedia.replaceWith(video);
+      modalMedia = video;
+    } else if (!wantsVideo && currentIsVideo) {
+      const img = document.createElement('img');
+
+      img.id = 'modalImage';
+      img.className = modalMedia.className;
+      modalMedia.pause();
+      modalMedia.replaceWith(img);
+      modalMedia = img;
+    }
+
+    if (wantsVideo) {
+      // Configurar el reel vertical en el detalle.
+      modalMedia.pause();
+      modalMedia.removeAttribute('src');
+      modalMedia.innerHTML = '';
+
+      modalMedia.src = project.video;
+      modalMedia.autoplay = true;
+      modalMedia.loop = true;
+      modalMedia.muted = true;
+      modalMedia.playsInline = true;
+      modalMedia.controls = true;
+      modalMedia.preload = 'metadata';
+      modalMedia.setAttribute(
+        'aria-label',
+        'Video del proyecto ' + project.title
       );
-    };
 
-    modalImage.src = project.image;
-    modalImage.alt = project.title;
+      modalMedia.onerror = () => {
+        console.error(
+          'No se pudo cargar el video:',
+          project.video
+        );
+      };
+
+      modalMedia.load();
+
+      const playback = modalMedia.play();
+
+      if (playback && typeof playback.catch === 'function') {
+        playback.catch(() => {
+          // El usuario podrá iniciarlo con los controles.
+        });
+      }
+    } else {
+      // Mostrar la imagen de los demás proyectos.
+      modalMedia.removeAttribute('controls');
+      modalMedia.removeAttribute('autoplay');
+      modalMedia.removeAttribute('loop');
+      modalMedia.removeAttribute('muted');
+      modalMedia.removeAttribute('playsinline');
+
+      modalMedia.onerror = () => {
+        console.error(
+          'No se pudo cargar la imagen del proyecto:',
+          project.image
+        );
+      };
+
+      modalMedia.src = project.image;
+      modalMedia.alt = project.title;
+    }
   }
 
   modal.classList.add('open');
@@ -199,8 +349,18 @@ function openModal(key) {
   if (modalClose) modalClose.focus();
 }
 
+
 function closeModal() {
   if (!modal) return;
+
+  // Detener el video al cerrar la ventana.
+  const modalVideo = modal.querySelector('video#modalImage');
+
+  if (modalVideo) {
+    modalVideo.pause();
+    modalVideo.removeAttribute('src');
+    modalVideo.load();
+  }
 
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden', 'true');
@@ -214,7 +374,6 @@ function closeModal() {
 
 document.querySelectorAll('[data-project]').forEach(element => {
   element.addEventListener('click', event => {
-    // Evita que un botón dentro de una tarjeta active otros clics.
     event.stopPropagation();
 
     const projectKey = element.dataset.project;
@@ -222,10 +381,15 @@ document.querySelectorAll('[data-project]').forEach(element => {
   });
 });
 
-const modalClose = document.getElementById('modalClose');
 
-if (modalClose) {
-  modalClose.addEventListener('click', closeModal);
+/* =========================================================
+   CERRAR VENTANA DE PROYECTO
+   ========================================================= */
+
+const modalCloseButton = document.getElementById('modalClose');
+
+if (modalCloseButton) {
+  modalCloseButton.addEventListener('click', closeModal);
 }
 
 if (modal) {
@@ -298,7 +462,7 @@ if (contactForm) {
 
 /* =========================================================
    REELS DE LOS IPHONES
-   Esta parte conserva la reproducción de los videos.
+   Conserva la reproducción de los videos existentes.
    ========================================================= */
 
 document.querySelectorAll(
@@ -308,7 +472,6 @@ document.querySelectorAll(
 
   if (!screen) return;
 
-  // Mostrar el video cuando el navegador pueda reproducirlo.
   const showVideo = () => {
     screen.classList.add('video-ready');
   };
@@ -316,7 +479,6 @@ document.querySelectorAll(
   video.addEventListener('loadeddata', showVideo);
   video.addEventListener('canplay', showVideo);
 
-  // Si el video falla, conservar el diseño de respaldo.
   video.addEventListener('error', () => {
     screen.classList.remove('video-ready');
 
@@ -326,7 +488,6 @@ document.querySelectorAll(
     );
   });
 
-  // Configurar reproducción automática sin sonido.
   video.muted = true;
   video.loop = true;
   video.playsInline = true;
@@ -345,3 +506,17 @@ document.querySelectorAll(
     });
   }
 });
+
+
+/* =========================================================
+   INICIALIZACIÓN DEL REEL DE SISTEMAS GRÁFICOS
+   ========================================================= */
+
+if (document.readyState === 'loading') {
+  document.addEventListener(
+    'DOMContentLoaded',
+    setupSystemReelCard
+  );
+} else {
+  setupSystemReelCard();
+}
