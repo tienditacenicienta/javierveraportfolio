@@ -533,3 +533,54 @@
   box-shadow: none !important;
   filter: none !important;
 }
+
+/* Reel vertical dentro de la tarjeta de proyectos */
+.project-reel-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000 !important;
+  isolation: isolate;
+}
+
+.project-reel-card .project-reel-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  background: #000;
+  transition: transform 0.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.project-reel-card:hover .project-reel-video {
+  transform: scale(1.025);
+}
+
+.project-reel-label,
+.project-image-caption {
+  position: absolute;
+  z-index: 2;
+  left: 16px;
+  bottom: 16px;
+  color: #fff;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-shadow: 0 1px 8px #000;
+  pointer-events: none;
+}
+
+.project-reel-label {
+  top: 16px;
+  bottom: auto;
+  padding: 7px 9px;
+  background: rgba(0,0,0,.55);
+  border: 1px solid rgba(255,255,255,.2);
+}
+
+.project-reel-card img {
+  display: none;
+}
