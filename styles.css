@@ -584,3 +584,26 @@
 .project-reel-card img {
   display: none;
 }
+
+/* REEL 03 — tarjeta de sistemas gráficos */
+.project-reel-card {
+  position: relative;
+  overflow: hidden;
+  background: #000 !important;
+}
+
+.project-reel-card .project-reel-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border: 0;
+  border-radius: 0;
+}
+
+/* Ocultar los rótulos superpuestos */
+.project-reel-label,
+.project-reel-card .project-image-caption {
+  display: none !important;
+}
