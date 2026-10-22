@@ -132,7 +132,7 @@ const projects = {
   campaign: {
     kicker: '01 / CAMPAÑAS PUBLICITARIAS',
     title: 'Una idea. Un universo visual.',
-    image: 'assets/projects/work-01.svg',
+    image: 'assets/projects/work-01.png',
     text: 'Presentación de campaña publicitaria y su desarrollo visual. Aquí podrás explicar el reto de comunicación, el concepto creativo y las piezas desarrolladas.'
   },
 
