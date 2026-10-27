@@ -635,3 +635,25 @@
   background: #000;
   border: 0;
 }
+
+/* Reel 03: mostrar el video vertical completo en la tarjeta principal */
+.project-reel-card {
+  background: #000 !important;
+  overflow: hidden;
+}
+
+.project-reel-card .system-project-reel,
+.project-reel-card .project-reel-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  object-position: center center;
+  background: #000 !important;
+}
+
+/* Mantener el video completo también al pasar el cursor */
+.project-reel-card:hover .system-project-reel,
+.project-reel-card:hover .project-reel-video {
+  transform: none !important;
+}
