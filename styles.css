@@ -670,3 +670,14 @@
   object-fit: contain !important;
   background: #080808;
 }
+/* PROYECTO 04 — Mostrar imagen completa */
+[data-project="digital"] img {
+  object-fit: contain !important;
+  background: #080808;
+}
+
+/* Imagen completa al abrir el proyecto */
+#modalImage {
+  object-fit: contain !important;
+  background: #080808;
+}
