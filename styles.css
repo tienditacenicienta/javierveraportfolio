@@ -657,3 +657,16 @@
 .project-reel-card:hover .project-reel-video {
   transform: none !important;
 }
+/* PROYECTO 03 — Mostrar imagen completa */
+.project-image[data-project="art"] img {
+  object-fit: contain !important;
+  width: 100%;
+  height: 100%;
+  background: #080808;
+}
+
+/* Imagen completa dentro de la ventana del proyecto */
+#modalImage {
+  object-fit: contain !important;
+  background: #080808;
+}
