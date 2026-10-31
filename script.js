@@ -146,11 +146,11 @@ const projects = {
   },
 
   art: {
-    kicker: '03 / DIRECCIÓN DE ARTE',
-    title: 'Un lenguaje propio. Una sensación.',
-    image: 'assets/projects/proyecto-03.png',
-    text: 'Dirección de arte, composición y lenguaje visual. Aquí podrás explicar las decisiones creativas y la atmósfera desarrollada para el proyecto.'
-  },
+  kicker: '03 / DIRECCIÓN DE ARTE',
+  title: 'Un lenguaje propio. Una sensación.',
+  image: 'assets/projects/proyecto-03.png',
+  text: 'Dirección de arte, composición y lenguaje visual. Aquí podrás explicar las decisiones creativas y la atmósfera desarrollada para el proyecto.'
+},
 
   digital: {
     kicker: '04 / CONTENIDO DIGITAL',
