@@ -153,12 +153,11 @@ const projects = {
 },
 
   digital: {
-    kicker: '04 / CONTENIDO DIGITAL',
-    title: 'Diseñado para vivir en movimiento.',
-    image: 'assets/projects/work-04.svg',
-    text: 'Piezas visuales adaptadas a distintos formatos digitales. Aquí podrás mostrar cómo una idea se transforma para vivir en diferentes medios.'
-  }
-};
+  kicker: '04 / CONTENIDO DIGITAL',
+  title: 'Diseñado para vivir en movimiento.',
+  image: 'assets/projects/proyecto-04.png',
+  text: 'Piezas visuales y contenido digital desarrollados para comunicar una idea a través de diferentes formatos.'
+}
 
 
 /* =========================================================
