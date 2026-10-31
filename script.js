@@ -157,7 +157,8 @@ const projects = {
   title: 'Diseñado para vivir en movimiento.',
   image: 'assets/projects/proyecto-04.png',
   text: 'Piezas visuales y contenido digital desarrollados para comunicar una idea a través de diferentes formatos.'
-}
+  }
+};
 
 
 /* =========================================================
