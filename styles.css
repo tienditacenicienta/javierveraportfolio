@@ -681,3 +681,200 @@
   object-fit: contain !important;
   background: #080808;
 }
+/* =========================================================
+   ASESORÍAS — JAVIER VERA
+   ========================================================= */
+
+.advisory {
+  position: relative;
+  padding-top: 115px;
+  padding-bottom: 125px;
+  background:
+    radial-gradient(
+      ellipse at 50% 35%,
+      #111a35 0%,
+      #050507 48%,
+      #000 80%
+    );
+  border-top: 1px solid #ffffff14;
+}
+
+.advisory-heading {
+  max-width: 950px;
+  margin: 10vh 0 7vh;
+}
+
+.advisory-heading h2 {
+  font-size: clamp(42px, 6.5vw, 88px);
+  line-height: 1.04;
+  letter-spacing: -.075em;
+  font-weight: 600;
+  margin: 25px 0;
+}
+
+.advisory-heading h2 em {
+  font-style: normal;
+  color: #858895;
+}
+
+.advisory-intro {
+  max-width: 540px;
+  color: #aaaab3;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.advisory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.advisory-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 440px;
+  padding: 27px;
+  border: 1px solid #ffffff22;
+  background: linear-gradient(
+    145deg,
+    #ffffff0b,
+    #ffffff03 70%
+  );
+  transition:
+    border-color .35s,
+    transform .35s,
+    background .35s;
+}
+
+.advisory-card:hover {
+  transform: translateY(-6px);
+  border-color: #9aafff75;
+  background: linear-gradient(
+    145deg,
+    #18213b80,
+    #ffffff05 75%
+  );
+}
+
+.advisory-featured {
+  border-color: #8da5ff65;
+  background: linear-gradient(
+    145deg,
+    #18264a85,
+    #ffffff05 75%
+  );
+}
+
+.advisory-number,
+.advisory-duration {
+  font: 10px var(--mono);
+  letter-spacing: .09em;
+  color: #9aafff;
+}
+
+.advisory-card-main {
+  padding: 45px 0 35px;
+}
+
+.advisory-type {
+  display: block;
+  color: #b6b6c0;
+  font-size: 13px;
+  margin-bottom: 17px;
+}
+
+.advisory-card h3 {
+  font-size: clamp(38px, 4vw, 53px);
+  font-weight: 500;
+  letter-spacing: -.07em;
+  margin: 0 0 10px;
+}
+
+.advisory-duration {
+  display: block;
+  color: #858590;
+}
+
+.advisory-card p {
+  color: #a5a5af;
+  font-size: 13px;
+  line-height: 1.85;
+  margin: 28px 0 0;
+}
+
+.advisory-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 17px 0 5px;
+  border-top: 1px solid #ffffff35;
+  font: 10px var(--mono);
+  letter-spacing: .07em;
+  transition: color .3s;
+}
+
+.advisory-button:hover {
+  color: #a9bcff;
+}
+
+.advisory-button span {
+  font-size: 17px;
+}
+
+.advisory-note {
+  margin: 30px 0 0;
+  color: #777781;
+  font: 10px var(--mono);
+  line-height: 1.8;
+  letter-spacing: .035em;
+}
+
+/* TABLETS */
+
+@media (max-width: 800px) {
+  .advisory-grid {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .advisory-card {
+    min-height: 0;
+  }
+
+  .advisory-card-main {
+    padding: 35px 0;
+  }
+
+  .advisory-heading {
+    margin: 8vh 0 5vh;
+  }
+}
+
+/* MÓVILES */
+
+@media (max-width: 520px) {
+  .advisory {
+    padding-top: 75px;
+    padding-bottom: 80px;
+  }
+
+  .advisory-heading h2 {
+    font-size: clamp(40px, 10vw, 58px);
+  }
+
+  .advisory-card {
+    padding: 22px;
+  }
+
+  .advisory-card h3 {
+    font-size: 43px;
+  }
+
+  .advisory-intro {
+    font-size: 14px;
+  }
+}
