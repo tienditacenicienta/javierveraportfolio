@@ -1144,3 +1144,44 @@ main,
   box-shadow: none !important;
   outline: 0;
 }
+
+
+/* =========================================================
+   PULPO VIDEO — SIN HALOS NI RESPLANDORES RECTANGULARES
+   El destello y la iluminación ya vienen dentro del MP4.
+   ========================================================= */
+
+.hero-octopus,
+.hero-octopus::before,
+.hero-octopus::after {
+  background: transparent !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+.hero-octopus {
+  isolation: auto !important;
+}
+
+.hero-octopus > .octopus-video {
+  background: transparent !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  mix-blend-mode: screen !important;
+  animation: none !important;
+}
+
+/* Desactiva las capas luminosas CSS: el video ya contiene su propio destello. */
+.hero-octopus .octopus-aura,
+.hero-octopus .octopus-pulse,
+.hero-octopus .octopus-spark {
+  display: none !important;
+}
+
+/* Evita que animaciones anteriores vuelvan a dibujar sombras sobre el video. */
+.hero-octopus > .octopus-video {
+  animation-name: none !important;
+  transition: none !important;
+}
