@@ -944,10 +944,8 @@
   object-fit: contain;
   background: transparent;
   border: 0;
-  mix-blend-mode: screen;
-  filter:
-    drop-shadow(0 0 18px rgba(48, 105, 255, .16))
-    drop-shadow(0 0 38px rgba(145, 44, 255, .12));
+  mix-blend-mode: lighten;
+  filter: contrast(1.65) brightness(1.08);
   transform-origin: 52% 55%;
   animation: octopus-float 7s 1.5s ease-in-out infinite,
              octopus-glow 8.5s 2.2s ease-in-out infinite;
@@ -1113,4 +1111,36 @@
   }
 
   .octopus-aura { opacity: .5; }
+}
+
+
+/* =========================================================
+   FONDO NEGRO CONTINUO — HERO / VIDEO DEL PULPO
+   ========================================================= */
+html,
+body {
+  background-color: #000 !important;
+}
+
+body,
+main,
+.hero,
+.nav {
+  background-color: #000;
+}
+
+.hero {
+  background-image: none;
+}
+
+
+/* El brillo se concentra detrás del personaje, nunca en los bordes del video. */
+.hero-octopus {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.hero-octopus > .octopus-video {
+  box-shadow: none !important;
+  outline: 0;
 }
