@@ -1185,3 +1185,38 @@ main,
   animation-name: none !important;
   transition: none !important;
 }
+
+/* =========================================================
+   VIDEO DE SERVICIO A MEDIDA — CONTACTO
+   Reproduce automáticamente en formato 16:9.
+   ========================================================= */
+.contact-product-card .product-visual {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  padding: 0;
+  background: #000;
+  border: 1px solid rgba(255,255,255,.1);
+  overflow: hidden;
+}
+
+.contact-product-card .product-visual::before,
+.contact-product-card .product-visual::after {
+  display: none;
+  content: none;
+}
+
+.contacto-video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  background: #000;
+  border: 0;
+  outline: 0;
+}
+
