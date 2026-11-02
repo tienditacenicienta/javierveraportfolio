@@ -1,11 +1,10 @@
 
 /* =========================================================
-   CONFIGURACIÓN
+   CONFIGURACIÓN GENERAL
    ========================================================= */
 
-// Cambia este número por tu WhatsApp internacional,
-// sin el signo + ni espacios.
-const WHATSAPP_NUMBER = '51999999999';
+// WhatsApp internacional: Perú +51
+const WHATSAPP_NUMBER = '51964363340';
 
 // Ruta del reel del proyecto Sistemas Gráficos.
 const SYSTEM_REEL_PATH = 'assets/reels/reel-03.mp4';
@@ -26,7 +25,10 @@ function closeMenu() {
   menuButton.setAttribute('aria-expanded', 'false');
 
   const menuIcon = menuButton.querySelector('span');
-  if (menuIcon) menuIcon.textContent = '＋';
+
+  if (menuIcon) {
+    menuIcon.textContent = '＋';
+  }
 }
 
 if (menuButton && menu) {
@@ -38,7 +40,10 @@ if (menuButton && menu) {
     menuButton.setAttribute('aria-expanded', String(isOpen));
 
     const menuIcon = menuButton.querySelector('span');
-    if (menuIcon) menuIcon.textContent = isOpen ? '×' : '＋';
+
+    if (menuIcon) {
+      menuIcon.textContent = isOpen ? '×' : '＋';
+    }
   });
 
   menu.querySelectorAll('a').forEach(link => {
@@ -65,12 +70,15 @@ if ('IntersectionObserver' in window) {
         }
       });
     },
-    { threshold: 0.13 }
+    {
+      threshold: 0.13
+    }
   );
 
   revealElements.forEach(element => {
     revealObserver.observe(element);
   });
+
 } else {
   revealElements.forEach(element => {
     element.classList.add('in-view');
@@ -85,12 +93,16 @@ if ('IntersectionObserver' in window) {
 const glow = document.querySelector('.cursor-glow');
 const heroArt = document.getElementById('heroArt');
 
-const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+const hasFinePointer = window.matchMedia(
+  '(pointer: fine)'
+).matches;
+
 const prefersReducedMotion = window.matchMedia(
   '(prefers-reduced-motion: reduce)'
 ).matches;
 
 if (hasFinePointer && !prefersReducedMotion) {
+
   if (glow) {
     document.addEventListener('pointermove', event => {
       glow.style.opacity = '.9';
@@ -130,6 +142,7 @@ if (hasFinePointer && !prefersReducedMotion) {
    ========================================================= */
 
 const projects = {
+
   campaign: {
     kicker: '01 / CAMPAÑAS PUBLICITARIAS',
     title: 'Una idea. Un universo visual.',
@@ -146,94 +159,20 @@ const projects = {
   },
 
   art: {
-  kicker: '03 / DIRECCIÓN DE ARTE',
-  title: 'Un lenguaje propio. Una sensación.',
-  image: 'assets/projects/proyecto-03.png',
-  text: 'Dirección de arte, composición y lenguaje visual. Aquí podrás explicar las decisiones creativas y la atmósfera desarrollada para el proyecto.'
-},
+    kicker: '03 / DIRECCIÓN DE ARTE',
+    title: 'Un lenguaje propio. Una sensación.',
+    image: 'assets/projects/proyecto-03.png',
+    text: 'Dirección de arte, composición y lenguaje visual. Aquí podrás explicar las decisiones creativas y la atmósfera desarrollada para el proyecto.'
+  },
 
   digital: {
-  kicker: '04 / CONTENIDO DIGITAL',
-  title: 'Diseñado para vivir en movimiento.',
-  image: 'assets/projects/proyecto-04.png',
-  text: 'Piezas visuales y contenido digital desarrollados para comunicar una idea a través de diferentes formatos.'
+    kicker: '04 / CONTENIDO DIGITAL',
+    title: 'Diseñado para vivir en movimiento.',
+    image: 'assets/projects/proyecto-04.png',
+    text: 'Piezas visuales y contenido digital desarrollados para comunicar una idea a través de diferentes formatos.'
   }
+
 };
-
-
-/* =========================================================
-   TARJETA DE SISTEMAS GRÁFICOS: REEL 03
-   Reemplaza la imagen de la tarjeta por el video vertical.
-   ========================================================= */
-
-function setupSystemReelCard() {
-  const systemCard = document.querySelector(
-    '[data-project="system"]'
-  );
-
-  if (!systemCard) {
-    console.warn(
-      'No se encontró el elemento [data-project="system"].'
-    );
-    return;
-  }
-
-  // Encontrar la imagen dentro de la tarjeta.
-  const cardImage = systemCard.querySelector(
-    '.project-visual img, .project-image img'
-  );
-
-  if (!cardImage) {
-    console.warn(
-      'No se encontró la imagen de la tarjeta de Sistemas Gráficos.'
-    );
-    return;
-  }
-
-  // Evitar insertar el mismo video dos veces.
-  if (systemCard.querySelector('.system-project-reel')) return;
-
-  const reel = document.createElement('video');
-
-  reel.className = 'system-project-reel';
-  reel.src = SYSTEM_REEL_PATH;
-  reel.autoplay = true;
-  reel.loop = true;
-  reel.muted = true;
-  reel.playsInline = true;
-  reel.preload = 'metadata';
-  reel.setAttribute(
-    'aria-label',
-    'Reel vertical del proyecto Sistemas Gráficos'
-  );
-
-  reel.addEventListener('error', () => {
-    console.error(
-      'No se pudo cargar el reel de Sistemas Gráficos:',
-      SYSTEM_REEL_PATH
-    );
-  });
-
-  // Mantener la tarjeta como elemento clicable.
-  const cardContainer = cardImage.closest(
-    '.project-visual, .project-image'
-  );
-
-  if (cardContainer) {
-    cardContainer.classList.add('project-reel-card');
-  }
-
-  cardImage.replaceWith(reel);
-
-  // Intentar reproducir sin sonido.
-  const playback = reel.play();
-
-  if (playback && typeof playback.catch === 'function') {
-    playback.catch(() => {
-      // Algunos navegadores pueden bloquear la reproducción automática.
-    });
-  }
-}
 
 
 /* =========================================================
@@ -244,13 +183,16 @@ function setupSystemReelCard() {
 const modal = document.getElementById('projectModal');
 
 function openModal(key) {
+
   const project = projects[key];
 
   if (!project || !modal) return;
 
   const modalKicker = document.getElementById('modalKicker');
   const modalTitle = document.getElementById('modalTitle');
+
   let modalMedia = document.getElementById('modalImage');
+
   const modalText = document.getElementById('modalText');
   const modalClose = document.getElementById('modalClose');
 
@@ -267,29 +209,39 @@ function openModal(key) {
   }
 
   if (modalMedia) {
+
     const wantsVideo = Boolean(project.video);
     const currentIsVideo = modalMedia.tagName === 'VIDEO';
 
-    // Convertir el elemento multimedia si cambia el tipo de proyecto.
+    // Cambiar imagen por video cuando corresponda.
     if (wantsVideo && !currentIsVideo) {
+
       const video = document.createElement('video');
 
       video.id = 'modalImage';
       video.className = modalMedia.className;
+
       modalMedia.replaceWith(video);
+
       modalMedia = video;
+
     } else if (!wantsVideo && currentIsVideo) {
+
       const img = document.createElement('img');
 
       img.id = 'modalImage';
       img.className = modalMedia.className;
+
       modalMedia.pause();
       modalMedia.replaceWith(img);
+
       modalMedia = img;
     }
 
+
+    // CONFIGURACIÓN DEL VIDEO
     if (wantsVideo) {
-      // Configurar el reel vertical en el detalle.
+
       modalMedia.pause();
       modalMedia.removeAttribute('src');
       modalMedia.innerHTML = '';
@@ -301,6 +253,7 @@ function openModal(key) {
       modalMedia.playsInline = true;
       modalMedia.controls = true;
       modalMedia.preload = 'metadata';
+
       modalMedia.setAttribute(
         'aria-label',
         'Video del proyecto ' + project.title
@@ -319,11 +272,13 @@ function openModal(key) {
 
       if (playback && typeof playback.catch === 'function') {
         playback.catch(() => {
-          // El usuario podrá iniciarlo con los controles.
+          // El usuario podrá iniciar el video con los controles.
         });
       }
+
     } else {
-      // Mostrar la imagen de los demás proyectos.
+
+      // CONFIGURACIÓN DE LA IMAGEN
       modalMedia.removeAttribute('controls');
       modalMedia.removeAttribute('autoplay');
       modalMedia.removeAttribute('loop');
@@ -344,13 +299,21 @@ function openModal(key) {
 
   modal.classList.add('open');
   modal.setAttribute('aria-hidden', 'false');
+
   document.body.style.overflow = 'hidden';
 
-  if (modalClose) modalClose.focus();
+  if (modalClose) {
+    modalClose.focus();
+  }
 }
 
 
+/* =========================================================
+   CERRAR VENTANA DE PROYECTO
+   ========================================================= */
+
 function closeModal() {
+
   if (!modal) return;
 
   // Detener el video al cerrar la ventana.
@@ -364,26 +327,35 @@ function closeModal() {
 
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden', 'true');
+
   document.body.style.overflow = '';
 }
 
 
 /* =========================================================
    CLICS EN LOS PROYECTOS
+   Un solo controlador evita eventos duplicados.
    ========================================================= */
 
-document.querySelectorAll('[data-project]').forEach(element => {
-  element.addEventListener('click', event => {
-    event.stopPropagation();
+document.addEventListener('click', event => {
 
-    const projectKey = element.dataset.project;
-    openModal(projectKey);
-  });
+  const projectElement = event.target.closest('[data-project]');
+
+  if (!projectElement) return;
+
+  const projectKey = projectElement.dataset.project;
+
+  if (!projects[projectKey]) return;
+
+  event.stopPropagation();
+
+  openModal(projectKey);
+
 });
 
 
 /* =========================================================
-   CERRAR VENTANA DE PROYECTO
+   CONTROLES DE LA VENTANA DE PROYECTOS
    ========================================================= */
 
 const modalCloseButton = document.getElementById('modalClose');
@@ -393,10 +365,13 @@ if (modalCloseButton) {
 }
 
 if (modal) {
+
   modal.addEventListener('click', event => {
+
     if (event.target === modal) {
       closeModal();
     }
+
   });
 }
 
@@ -406,10 +381,12 @@ if (modal) {
    ========================================================= */
 
 document.addEventListener('keydown', event => {
+
   if (event.key === 'Escape') {
     closeMenu();
     closeModal();
   }
+
 });
 
 
@@ -420,7 +397,9 @@ document.addEventListener('keydown', event => {
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
+
   contactForm.addEventListener('submit', event => {
+
     event.preventDefault();
 
     const form = new FormData(event.currentTarget);
@@ -440,14 +419,6 @@ if (contactForm) {
       .filter(Boolean)
       .join('\n');
 
-    if (WHATSAPP_NUMBER === '51999999999') {
-      alert(
-        'Antes de publicar, reemplaza 51999999999 en script.js ' +
-        'por tu número real de WhatsApp internacional.'
-      );
-      return;
-    }
-
     const whatsappURL =
       `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 
@@ -456,7 +427,9 @@ if (contactForm) {
       '_blank',
       'noopener,noreferrer'
     );
+
   });
+
 }
 
 
@@ -468,6 +441,7 @@ if (contactForm) {
 document.querySelectorAll(
   '.portfolio-reel .reel-video'
 ).forEach(video => {
+
   const screen = video.closest('.iphone-screen');
 
   if (!screen) return;
@@ -480,12 +454,14 @@ document.querySelectorAll(
   video.addEventListener('canplay', showVideo);
 
   video.addEventListener('error', () => {
+
     screen.classList.remove('video-ready');
 
     console.error(
       'No se pudo cargar el reel:',
       video.currentSrc || video.src
     );
+
   });
 
   video.muted = true;
@@ -498,25 +474,43 @@ document.querySelectorAll(
   const playback = video.play();
 
   if (playback && typeof playback.catch === 'function') {
+
     playback.catch(error => {
+
       console.warn(
         'No se pudo iniciar la reproducción del reel:',
         error
       );
+
     });
+
   }
+
 });
 
 
 /* =========================================================
-   INICIALIZACIÓN DEL REEL DE SISTEMAS GRÁFICOS
+   REEL 03 - SISTEMAS GRÁFICOS
+   El video ya está incluido directamente en index.html.
+   No se vuelve a insertar para evitar duplicaciones.
    ========================================================= */
 
-if (document.readyState === 'loading') {
-  document.addEventListener(
-    'DOMContentLoaded',
-    setupSystemReelCard
-  );
-} else {
-  setupSystemReelCard();
+const systemReelCard = document.querySelector(
+  '.project-reel-card .project-reel-video'
+);
+
+if (systemReelCard) {
+
+  systemReelCard.muted = true;
+  systemReelCard.loop = true;
+  systemReelCard.playsInline = true;
+
+  const playback = systemReelCard.play();
+
+  if (playback && typeof playback.catch === 'function') {
+    playback.catch(() => {
+      // El navegador puede requerir interacción para reproducir.
+    });
+  }
+
 }
